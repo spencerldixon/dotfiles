@@ -25,3 +25,10 @@ chmod +x install.sh
 ## Updating
 
 It's just git! Pull and push as you would normally. You will need to run the installation script each time to copy new files and folders.
+
+## Help
+
+For some problems I've come across during installation, these might help...
+
+https://help.github.com/articles/changing-a-remote-s-url/
+https://help.github.com/articles/generating-ssh-keys/
