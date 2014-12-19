@@ -4,6 +4,14 @@ My split window vim, and iterm2 setup for Ruby on Rails development
 
 ## Installation
 
+Install Vundle to manage vim plugins:
+
+`git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
+
+To install plugins, run this from the command line:
+
+`vim +PluginInstall +qall`
+
 Run these commands from your command line to use the install script:
 
 ```
