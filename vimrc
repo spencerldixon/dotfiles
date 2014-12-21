@@ -41,7 +41,7 @@ let g:airline_theme           = 'dark'
 let g:airline#extensions#tabline#enabled = 1
 
 " NERDTREE CONFIG
-let NERDTreeShowHidden=1
+" let NERDTreeShowHidden=1
 autocmd vimenter * NERDTree
 map <C-n> :NERDTreeToggle<CR>
 
