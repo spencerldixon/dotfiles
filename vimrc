@@ -6,7 +6,7 @@ set nocompatible
 filetype off
 set cursorline
 syntax enable
-colorscheme monokai
+" colorscheme monokai
 set laststatus=2
 set mouse=a
 set encoding=utf-8
@@ -25,6 +25,7 @@ Plugin 'bling/vim-airline.git'
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
+Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 call vundle#end()
 
 filetype plugin indent on
