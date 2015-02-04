@@ -6,7 +6,7 @@ set nocompatible
 filetype off
 set cursorline
 syntax enable
-" colorscheme monokai
+colorscheme benokai
 set laststatus=2
 set mouse=a
 set encoding=utf-8
@@ -14,6 +14,7 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 au BufWritePost .vimrc so ~/.vimrc " (automatically reload vimrc when it's saved)
+set autochdir
 
 " RUNTIME (set the runtime path to include Vundle and initialize)
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -23,6 +24,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'bling/vim-airline.git'
 Plugin 'scrooloose/nerdtree.git'
+Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
 Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
@@ -42,7 +44,7 @@ let g:airline_theme           = 'dark'
 let g:airline#extensions#tabline#enabled = 1
 
 " NERDTREE CONFIG
-let NERDTreeShowHidden=1
+" let NERDTreeShowHidden=0
 " autocmd vimenter * NERDTree
 map <C-n> :NERDTreeToggle<CR>
 
