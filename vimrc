@@ -15,6 +15,8 @@ set shiftwidth=2
 set expandtab
 au BufWritePost .vimrc so ~/.vimrc " (automatically reload vimrc when it's saved)
 set autochdir
+set number
+set guifont=Menlo\ For\ Powerline
 
 " RUNTIME (set the runtime path to include Vundle and initialize)
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -27,7 +29,6 @@ Plugin 'scrooloose/nerdtree.git'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
-Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 call vundle#end()
 
 filetype plugin indent on
