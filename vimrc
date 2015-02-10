@@ -5,8 +5,6 @@
 set nocompatible
 filetype off
 set cursorline
-syntax enable
-colorscheme benokai
 set laststatus=2
 set mouse=a
 set encoding=utf-8
@@ -16,7 +14,14 @@ set expandtab
 au BufWritePost .vimrc so ~/.vimrc " (automatically reload vimrc when it's saved)
 set autochdir
 set number
+set numberwidth=2
 set guifont=Menlo\ For\ Powerline
+
+syntax enable
+set background=dark
+colorscheme benokai
+
+
 
 " RUNTIME (set the runtime path to include Vundle and initialize)
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -24,6 +29,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 " PLUGINS (Put all plugins in here)
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
+Bundle 'jlanzarotta/bufexplorer'
 Plugin 'bling/vim-airline.git'
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'jistr/vim-nerdtree-tabs'
@@ -41,7 +47,7 @@ nnoremap <S—d>	:bd<CR>
 
 " POWERLINE CONFIG
 let g:airline_powerline_fonts = 1
-let g:airline_theme           = 'dark'
+let g:airline_theme           = 'base16'
 let g:airline#extensions#tabline#enabled = 1
 
 " NERDTREE CONFIG
@@ -56,5 +62,7 @@ let g:ctrlp_map = '<S-f>'
 nnoremap <S-r> :CtrlPMRUFiles<CR>
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
+let g:ctrlp_cmd = 'CtrlPLastMode'
+let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
 
 
