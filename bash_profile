@@ -16,3 +16,5 @@ export PS1="\[\e[00;37m\][\u] \[\e[0m\]\[\e[01;37m\]\W\[\e[0m\]\[\e[00;37m\] \$(
 
 alias c="clear"
 alias v="vim"
+alias rs="rails s"
+alias rc="rails c"

@@ -16,6 +16,8 @@ set autochdir
 set number
 set numberwidth=2
 set guifont=Menlo\ For\ Powerline
+set ignorecase
+set smartcase
 
 syntax enable
 set background=dark
@@ -32,7 +34,6 @@ Plugin 'gmarik/Vundle.vim'
 Bundle 'jlanzarotta/bufexplorer'
 Plugin 'bling/vim-airline.git'
 Plugin 'scrooloose/nerdtree.git'
-Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
 call vundle#end()
