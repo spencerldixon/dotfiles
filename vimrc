@@ -18,10 +18,13 @@ set numberwidth=2
 set guifont=Menlo\ For\ Powerline
 set ignorecase
 set smartcase
-
 syntax enable
 set background=dark
-colorscheme benokai
+colorscheme monokai
+" Use neocomplete.vim
+let g:neocomplete#sources#omni#input_patterns = {
+\   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+\}
 
 
 
@@ -51,6 +54,10 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme           = 'base16'
 let g:airline#extensions#tabline#enabled = 1
 
+" CUSTOM AIRLINE CONFIG
+let g:airline_section_y = '%y'
+let g:airline_section_z = '%{strftime("%I:%M")}'
+
 " NERDTREE CONFIG
 " let NERDTreeShowHidden=0
 " autocmd vimenter * NERDTree
@@ -65,5 +72,21 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
 let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
+
+" SILVER SEARCH CONFIG
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+" bind \ (backward slash) to grep shortcut
+command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+nnoremap \ :Ag<SPACE>
+nmap <silent> <up> :cprev<CR>
+nmap <silent> <down> :cnext<CR>
 
 
