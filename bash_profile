@@ -9,7 +9,6 @@ parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-
 export PS1="\[\e[00;37m\][\u] \[\e[0m\]\[\e[01;37m\]\W\[\e[0m\]\[\e[00;37m\] \$(parse_git_branch)\[\e[0m\] "
 
 [ -s "/Users/spencerdixon/.scm_breeze/scm_breeze.sh" ] && source "/Users/spencerdixon/.scm_breeze/scm_breeze.sh"
@@ -21,3 +20,6 @@ alias rc="rails c"
 alias be="bundle exec"
 alias sideconf="bundle exec sidekiq -C config/sidekiq.yml"
 alias clean_merged="git branch --merged | grep -v '\*' | xargs -n 1 git branch -d"
+alias fuck='$(thefuck $(fc -ln -1))'
+alias FUCK='fuck'
+alias babs="babushka"
