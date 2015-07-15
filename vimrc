@@ -1,4 +1,21 @@
-" Follow this tutorial for installation
+ "RUNTIME (set the runtime path to include Vundle and initialize)
+set rtp+=~/.vim/bundle/Vundle.vim
+
+" PLUGINS (Put all plugins in here)
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Bundle 'jlanzarotta/bufexplorer'
+Plugin 'bling/vim-airline.git'
+Plugin 'scrooloose/nerdtree.git'
+Plugin 'tpope/vim-fugitive'
+Plugin 'kien/ctrlp.vim'
+Plugin 'junegunn/goyo.vim'
+Plugin 'junegunn/limelight.vim'
+Plugin 'paranoida/vim-airlineish'
+
+call vundle#end()
+
+"Fvllow this tutorial for installation
 " http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/
 
 " SET DEFAULTS (Color Scheme, Tab Spacing, etc.)
@@ -11,35 +28,42 @@ set encoding=utf-8
 set tabstop=2
 set shiftwidth=2
 set expandtab
+set title
 au BufWritePost .vimrc so ~/.vimrc " (automatically reload vimrc when it's saved)
 set autochdir
 set number
-set numberwidth=2
+set numberwidth=3
 set guifont=Menlo\ For\ Powerline
 set ignorecase
 set smartcase
 syntax enable
 set background=dark
-colorscheme monokai
+colorscheme heroku-monokai
 " Use neocomplete.vim
 let g:neocomplete#sources#omni#input_patterns = {
 \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
 \}
 
+set timeoutlen=1000 ttimeoutlen=0
+" removes annoying delay in exiting/entering insert mode
+
+" Set leader to spacebar
+let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
+
+" Fast reload of vimrc
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" Strip trailing whitespaces on save
+autocmd BufWritePre * :%s/\s\+$//e
 
 
-" RUNTIME (set the runtime path to include Vundle and initialize)
-set rtp+=~/.vim/bundle/Vundle.vim
- 
-" PLUGINS (Put all plugins in here)
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-Bundle 'jlanzarotta/bufexplorer'
-Plugin 'bling/vim-airline.git'
-Plugin 'scrooloose/nerdtree.git'
-Plugin 'tpope/vim-fugitive'
-Plugin 'kien/ctrlp.vim'
-call vundle#end()
+
+" Go to end of file with Enter
+nmap <CR> G
+" Beginning of file with Backspace
+nmap <BS> gg
+nmap <leader>w :w<CR>
 
 filetype plugin indent on
 
@@ -51,17 +75,47 @@ nnoremap <S—d>	:bd<CR>
 
 " POWERLINE CONFIG
 let g:airline_powerline_fonts = 1
-let g:airline_theme           = 'base16'
+let g:airline_theme           = 'airlineish'
 let g:airline#extensions#tabline#enabled = 1
 
 " CUSTOM AIRLINE CONFIG
-let g:airline_section_y = '%y'
+let g:airline_section_a = airline#section#create(['mode', ' ', 'branch'])
+let g:airline_section_b = airline#section#create(['%F', ' ', '%m'])
+let g:airline_section_c = ''
+let g:airline_section_x = airline#section#create(['Line ', '%l', ' of ', '%L'])
+let g:airline_section_y = airline#section#create(['mode', ' ', 'branch'])
 let g:airline_section_z = '%{strftime("%I:%M")}'
+
+" GOYO CONCENTRATION MODE
+
+let g:goyo_width = 120
+" Distraction-free mode
+nnoremap <silent> <leader>z :Goyo<cr>
+
+" LIMELIGHT
+nmap <Leader>l :Limelight!!<CR>
+
+" Color name (:help cterm-colors) or ANSI code
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
+"
+" " Color name (:help gui-colors) or RGB color
+let g:limelight_conceal_guifg = 'DarkGray'
+let g:limelight_conceal_guifg = '#777777'
+"
+let g:limelight_default_coefficient = 0.7
+"
+"Number of preceding/following paragraphs to include (default: 0)
+let g:limelight_paragraph_span = 0
 
 " NERDTREE CONFIG
 " let NERDTreeShowHidden=0
 " autocmd vimenter * NERDTree
 map <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeWinSize=38
+
+" Find file in nerdtree with Space+R
+map <leader>r :NERDTreeFind<CR>
 
 " CTRLP CONFIG - Vim Search/Finder
 set runtimepath^=~/.vim/bundle/ctrlp.vim

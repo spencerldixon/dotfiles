@@ -1,4 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =3
 let g:netrw_dirhist_1='/Users/spencerdixon/.rvm/gems/ruby-2.0.0-p353@ort3/gems/livequery-rails-0.0.1'
 let g:netrw_dirhist_2='/Users/spencerdixon/.rvm/gems/ruby-2.1.5/gems/tinder_pyro-0.0.1'
+let g:netrw_dirhist_3='/Users/spencerdixon'
