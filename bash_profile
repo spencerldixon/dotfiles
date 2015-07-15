@@ -9,9 +9,20 @@ parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
+# Output name in console
+
 export PS1="\[\e[00;37m\][\u] \[\e[0m\]\[\e[01;37m\]\W\[\e[0m\]\[\e[00;37m\] \$(parse_git_branch)\[\e[0m\] "
 
+# Use SCM Breeze shortcuts for git
+
 [ -s "/Users/spencerdixon/.scm_breeze/scm_breeze.sh" ] && source "/Users/spencerdixon/.scm_breeze/scm_breeze.sh"
+
+# Make directories bold
+
+LSCOLORS='di-1'
+export LSCOLORS
+
+ #Aliases
 
 alias c="clear"
 alias v="vim"
@@ -23,3 +34,4 @@ alias clean_merged="git branch --merged | grep -v '\*' | xargs -n 1 git branch -
 alias fuck='$(thefuck $(fc -ln -1))'
 alias FUCK='fuck'
 alias babs="babushka"
+alias ls="ls -G"
