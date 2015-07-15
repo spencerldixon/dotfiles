@@ -19,7 +19,7 @@ export PS1="\[\e[00;37m\][\u] \[\e[0m\]\[\e[01;37m\]\W\[\e[0m\]\[\e[00;37m\] \$(
 
 # Make directories bold
 
-LSCOLORS='di-1'
+LSCOLORS='GxFxCxDxBxegedabagaced'
 export LSCOLORS
 
  #Aliases
@@ -34,4 +34,4 @@ alias clean_merged="git branch --merged | grep -v '\*' | xargs -n 1 git branch -
 alias fuck='$(thefuck $(fc -ln -1))'
 alias FUCK='fuck'
 alias babs="babushka"
-alias ls="ls -G"
+alias ls="ls -GF"
