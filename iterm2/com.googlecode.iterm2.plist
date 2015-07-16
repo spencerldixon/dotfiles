@@ -905,13 +905,6 @@
 			<key>Text</key>
 			<string></string>
 		</dict>
-		<key>0xf701-0x200000</key>
-		<dict>
-			<key>Action</key>
-			<integer>8</integer>
-			<key>Text</key>
-			<string></string>
-		</dict>
 		<key>0xf701-0x300000</key>
 		<dict>
 			<key>Action</key>
@@ -1022,7 +1015,7 @@
 	<key>MaxVertically</key>
 	<false/>
 	<key>NSColorPanelMode</key>
-	<string>5</string>
+	<string>6</string>
 	<key>NSFontPanelAttributes</key>
 	<string>1, 0</string>
 	<key>NSNavLastRootDirectory</key>
@@ -1071,9 +1064,9 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>500 85 445 77 0 0 1440 900 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>443 193 924 485 0 0 1440 877 </string>
+	<string>121 234 924 485 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>74 224 570 501 0 0 1440 877 </string>
+	<string>74 288 570 426 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>1 423 570 426 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -1101,11 +1094,11 @@
 			<key>Ansi 1 Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.0</real>
+				<real>0.20000000298023224</real>
 				<key>Green Component</key>
-				<real>0.016314128413796425</real>
+				<real>0.20000000298023224</real>
 				<key>Red Component</key>
-				<real>0.87994253635406494</real>
+				<real>0.75686275959014893</real>
 			</dict>
 			<key>Ansi 10 Color</key>
 			<dict>
@@ -1121,7 +1114,7 @@
 				<key>Blue Component</key>
 				<real>0.0</real>
 				<key>Green Component</key>
-				<real>1</real>
+				<real>0.91764706373214722</real>
 				<key>Red Component</key>
 				<real>1</real>
 			</dict>
@@ -1146,20 +1139,20 @@
 			<key>Ansi 14 Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>1</real>
+				<real>0.99607843160629272</real>
 				<key>Green Component</key>
-				<real>0.74901962280273438</real>
+				<real>0.96078431606292725</real>
 				<key>Red Component</key>
-				<real>0.74901962280273438</real>
+				<real>0.70588237047195435</real>
 			</dict>
 			<key>Ansi 15 Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>1</real>
+				<real>0.83846509456634521</real>
 				<key>Green Component</key>
-				<real>1</real>
+				<real>0.83846509456634521</real>
 				<key>Red Component</key>
-				<real>1</real>
+				<real>0.83846509456634521</real>
 			</dict>
 			<key>Ansi 2 Color</key>
 			<dict>
@@ -1175,7 +1168,7 @@
 				<key>Blue Component</key>
 				<real>0.0</real>
 				<key>Green Component</key>
-				<real>1</real>
+				<real>0.91764706373214722</real>
 				<key>Red Component</key>
 				<real>1</real>
 			</dict>
@@ -1200,11 +1193,11 @@
 			<key>Ansi 6 Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>1</real>
+				<real>0.99607843160629272</real>
 				<key>Green Component</key>
-				<real>0.74901962280273438</real>
+				<real>0.96078431606292725</real>
 				<key>Red Component</key>
-				<real>0.74901962280273438</real>
+				<real>0.70588237047195435</real>
 			</dict>
 			<key>Ansi 7 Color</key>
 			<dict>
@@ -1227,11 +1220,11 @@
 			<key>Ansi 9 Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.0</real>
+				<real>0.16078431904315948</real>
 				<key>Green Component</key>
-				<real>0.016314128413796425</real>
+				<real>0.15686275064945221</real>
 				<key>Red Component</key>
-				<real>0.87994253635406494</real>
+				<real>0.78431373834609985</real>
 			</dict>
 			<key>Automatically Log</key>
 			<false/>
@@ -1280,11 +1273,11 @@
 			<key>Cursor Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.29803922772407532</real>
+				<real>0.98626977205276489</real>
 				<key>Green Component</key>
-				<real>0.30196079611778259</real>
+				<real>0.99656742811203003</real>
 				<key>Red Component</key>
-				<real>0.30196079611778259</real>
+				<real>1</real>
 			</dict>
 			<key>Cursor Text Color</key>
 			<dict>
@@ -1296,7 +1289,7 @@
 				<real>1</real>
 			</dict>
 			<key>Cursor Type</key>
-			<integer>2</integer>
+			<integer>1</integer>
 			<key>Custom Command</key>
 			<string>No</string>
 			<key>Custom Directory</key>
@@ -1329,7 +1322,7 @@
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Initial Text</key>
-			<string></string>
+			<string>tmux list-sessions</string>
 			<key>Jobs to Ignore</key>
 			<array>
 				<string>rlogin</string>
@@ -1876,7 +1869,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-07-15T10:15:35Z</date>
+	<date>2015-07-16T10:15:35Z</date>
 	<key>SUSkippedVersion</key>
 	<string>2.1.1</string>
 	<key>SavePasteHistory</key>

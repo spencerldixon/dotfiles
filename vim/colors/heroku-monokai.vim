@@ -113,9 +113,9 @@ hi CursorLineNr   term=bold ctermfg=White
 hi Normal ctermfg=231 ctermbg=234 cterm=NONE
 hi VertSplit ctermfg=236 ctermbg=234 cterm=NONE
 hi NonText ctermfg=234 ctermbg=234
-hi StatusLine ctermfg=231 ctermbg=231 cterm=bold 
+hi StatusLine ctermfg=231 ctermbg=231 cterm=bold
 hi StatusLineNC ctermfg=231 ctermbg=234 cterm=NONE
-hi CursorLine ctermfg=NONE ctermbg=236 cterm=NONE 
+hi CursorLine ctermfg=NONE ctermbg=236 cterm=NONE
 hi CursorColumn ctermfg=NONE ctermbg=236 cterm=NONE
 
 

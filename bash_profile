@@ -35,3 +35,7 @@ alias fuck='$(thefuck $(fc -ln -1))'
 alias FUCK='fuck'
 alias babs="babushka"
 alias ls="ls -GF"
+alias t="tmux"
+alias ts="tmux list-sessions"
+alias ta="tmux attach -t"
+alias tns="TMUX= tmux new-session -d -s"
