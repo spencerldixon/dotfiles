@@ -1,4 +1,4 @@
-" Heroku Colorscheme 
+" Heroku Colorscheme
 "
 " - iTerm2 only
 " - Depends on heroku colorscheme for iTerm2

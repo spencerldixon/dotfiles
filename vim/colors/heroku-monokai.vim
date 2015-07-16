@@ -107,3 +107,15 @@ hi cssClassName ctermfg=148 ctermbg=NONE cterm=NONE guifg=#a6e22e guibg=NONE gui
 hi cssValueLength ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
 hi cssCommonAttr ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=NONE
 hi cssBraces ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
+
+highlight LineNr ctermfg=237 ctermbg=NONE
+hi CursorLineNr   term=bold ctermfg=White
+hi Normal ctermfg=231 ctermbg=234 cterm=NONE
+hi VertSplit ctermfg=236 ctermbg=234 cterm=NONE
+hi NonText ctermfg=234 ctermbg=234
+hi StatusLine ctermfg=231 ctermbg=231 cterm=bold 
+hi StatusLineNC ctermfg=231 ctermbg=234 cterm=NONE
+hi CursorLine ctermfg=NONE ctermbg=236 cterm=NONE 
+hi CursorColumn ctermfg=NONE ctermbg=236 cterm=NONE
+
+

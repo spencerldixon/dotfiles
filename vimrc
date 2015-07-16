@@ -12,10 +12,11 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
 Plugin 'paranoida/vim-airlineish'
+Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()
 
-"Fvllow this tutorial for installation
+"Follow this tutorial for installation
 " http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/
 
 " SET DEFAULTS (Color Scheme, Tab Spacing, etc.)
@@ -56,8 +57,6 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " Strip trailing whitespaces on save
 autocmd BufWritePre * :%s/\s\+$//e
-
-
 
 " Go to end of file with Enter
 nmap <CR> G
@@ -119,14 +118,14 @@ map <leader>r :NERDTreeFind<CR>
 
 " CTRLP CONFIG - Vim Search/Finder
 set runtimepath^=~/.vim/bundle/ctrlp.vim
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_map = '<S-f>'
-nnoremap <S-r> :CtrlPMRUFiles<CR>
+let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
 let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
+nnoremap <leader>f :CtrlP<CR>
 
+nnoremap <S-r> :CtrlPMRUFiles<CR>
 " SILVER SEARCH CONFIG
 if executable('ag')
   " Use ag over grep
@@ -137,10 +136,19 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
+
+
 " bind \ (backward slash) to grep shortcut
+
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+
 nnoremap \ :Ag<SPACE>
+
+
+
+
 nmap <silent> <up> :cprev<CR>
+
 nmap <silent> <down> :cnext<CR>
 
 
