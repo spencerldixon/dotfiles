@@ -67,8 +67,8 @@ nmap <leader>w :w<CR>
 filetype plugin indent on
 
 " VIM KEYMAPPINGS
-nnoremap <S-Left> :bp<CR>
-nnoremap <S-Right> :bn<CR>
+nnoremap <leader>p :bp<CR>
+nnoremap <leader>n :bn<CR>
 nnoremap <tab>   <C-w>w
 nnoremap <S—d>	:bd<CR>
 
