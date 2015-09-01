@@ -40,3 +40,12 @@ alias ts="tmux list-sessions"
 alias ta="tmux attach -t"
 alias tns="TMUX= tmux new-session -d -s"
 alias td="tmux detach"
+
+##
+# Your previous /Users/spencerdixon/.bash_profile file was backed up as /Users/spencerdixon/.bash_profile.macports-saved_2015-08-14_at_16:16:09
+##
+
+# MacPorts Installer addition on 2015-08-14_at_16:16:09: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+

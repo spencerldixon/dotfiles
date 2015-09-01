@@ -152,4 +152,8 @@ nmap <silent> <up> :cprev<CR>
 
 nmap <silent> <down> :cnext<CR>
 
+" transparent background
+highlight Normal  ctermbg=none
+highlight NonText ctermbg=none
+
 
