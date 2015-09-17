@@ -14,6 +14,7 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
 Plugin 'paranoida/vim-airlineish'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'jeetsukumaran/vim-buffergator'
 
 call vundle#end()
 
@@ -71,7 +72,7 @@ filetype plugin indent on
 nnoremap <leader>p :bp<CR>
 nnoremap <leader>n :bn<CR>
 nnoremap <tab>   <C-w>w
-nnoremap <S—d>	:bd<CR>
+nnoremap <leader>d :bd<CR>
 
 " POWERLINE CONFIG
 let g:airline_powerline_fonts = 1
@@ -145,11 +146,7 @@ command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 
 nnoremap \ :Ag<SPACE>
 
-
-
-
 nmap <silent> <up> :cprev<CR>
-
 nmap <silent> <down> :cnext<CR>
 
 " transparent background
