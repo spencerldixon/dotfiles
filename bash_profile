@@ -40,6 +40,8 @@ alias ts="tmux list-sessions"
 alias ta="tmux attach -t"
 alias tns="TMUX= tmux new-session -d -s"
 alias td="tmux detach"
+alias py="python"
+
 
 ##
 # Your previous /Users/spencerdixon/.bash_profile file was backed up as /Users/spencerdixon/.bash_profile.macports-saved_2015-08-14_at_16:16:09
