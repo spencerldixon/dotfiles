@@ -15,6 +15,7 @@ Plugin 'junegunn/limelight.vim'
 Plugin 'paranoida/vim-airlineish'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'jeetsukumaran/vim-buffergator'
+Plugin 'tpope/vim-rails'
 
 call vundle#end()
 
