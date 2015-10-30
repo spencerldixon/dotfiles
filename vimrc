@@ -115,6 +115,7 @@ let g:limelight_paragraph_span = 0
 " autocmd vimenter * NERDTree
 map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeWinSize=38
+let NERDTreeShowHidden=1
 
 " Find file in nerdtree with Space+R
 map <leader>r :NERDTreeFind<CR>
