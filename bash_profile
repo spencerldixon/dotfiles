@@ -41,6 +41,8 @@ alias ta="tmux attach -t"
 alias tns="TMUX= tmux new-session -d -s"
 alias td="tmux detach"
 alias py="python"
+alias smlist='spoof-mac.py list --wifi'
+alias smrandom='sudo spoof-mac.py randomize wi-fi; echo "Mac address spoofed!"; spoof-mac.py list --wifi'
 
 
 ##

@@ -29,7 +29,7 @@ hi Search ctermfg=NONE ctermbg=NONE cterm=underline guifg=NONE guibg=NONE gui=un
 hi Directory ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
 hi Folded ctermfg=242 ctermbg=235 cterm=NONE guifg=#75715e guibg=#272822 gui=NONE
 hi SignColumn ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
-hi Normal ctermfg=231 ctermbg=235 cterm=NONE guifg=#f8f8f2 guibg=#272822 gui=NONE
+hi Normal ctermfg=231 ctermbg=234 cterm=NONE guifg=#f8f8f2 guibg=#20211c gui=NONE
 hi Boolean ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
 hi Character ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
 hi Comment ctermfg=242 ctermbg=NONE cterm=NONE guifg=#75715e guibg=NONE gui=NONE
@@ -110,11 +110,11 @@ hi cssBraces ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
 
 highlight LineNr ctermfg=237 ctermbg=NONE
 hi CursorLineNr   term=bold ctermfg=White
-hi Normal ctermfg=231 ctermbg=234 cterm=NONE
-hi VertSplit ctermfg=236 ctermbg=234 cterm=NONE
-hi NonText ctermfg=234 ctermbg=234
+hi Normal ctermfg=231 ctermbg=233 cterm=NONE
+hi VertSplit ctermfg=236 ctermbg=233 cterm=NONE
+hi NonText ctermfg=234 ctermbg=233
 hi StatusLine ctermfg=231 ctermbg=231 cterm=bold
-hi StatusLineNC ctermfg=231 ctermbg=234 cterm=NONE
+hi StatusLineNC ctermfg=231 ctermbg=233 cterm=NONE
 hi CursorLine ctermfg=NONE ctermbg=236 cterm=NONE
 hi CursorColumn ctermfg=NONE ctermbg=236 cterm=NONE
 
