@@ -44,7 +44,6 @@ alias py="python"
 alias smlist='spoof-mac.py list --wifi'
 alias smrandom='sudo spoof-mac.py randomize wi-fi; echo "Mac address spoofed!"; spoof-mac.py list --wifi'
 
-
 ##
 # Your previous /Users/spencerdixon/.bash_profile file was backed up as /Users/spencerdixon/.bash_profile.macports-saved_2015-08-14_at_16:16:09
 ##
