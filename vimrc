@@ -17,6 +17,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'tpope/vim-rails'
 Plugin 'ap/vim-css-color'
+Plugin 'mattn/emmet-vim'
 
 call vundle#end()
 
@@ -42,6 +43,7 @@ set guifont=Menlo\ For\ Powerline
 set ignorecase
 set smartcase
 syntax enable
+set relativenumber
 set background=dark
 colorscheme heroku-monokai
 " Use neocomplete.vim
@@ -151,6 +153,10 @@ nnoremap \ :Ag<SPACE>
 
 nmap <silent> <up> :cprev<CR>
 nmap <silent> <down> :cnext<CR>
+
+" EMMETT CONFIG
+let g:user_emmet_leader_key='<C-Z>'
+
 
 " transparent background
 "highlight Normal  ctermbg=none
