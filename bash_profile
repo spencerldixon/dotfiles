@@ -11,7 +11,7 @@ parse_git_branch() {
 
 # Output name in console
 
-export PS1="\[\e[00;37m\][\u] \[\e[0m\]\[\e[01;37m\]\W\[\e[0m\]\[\e[00;37m\] \$(parse_git_branch)\[\e[0m\] "
+export PS1="\[\e[00;37m\][\u] \[\e[0m\]\[\e[01;37m\]\W\[\e[0m\] \[\e[0;31m\][\$(parse_git_branch)]\[\e[00;37m\] >>>\[\e[0m\] "
 
 # Use SCM Breeze shortcuts for git
 
