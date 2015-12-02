@@ -23,5 +23,4 @@ DATE="#[fg=${date_time_colour},bg=${spotify_colour},nobold,noitalics,nounderscor
 
 TIME="#[fg=${text_colour},bg=${date_time_colour},nobold,noitalics,nounderscore]|#[fg=${text_colour},bg=${date_time_colour},bold,noitalics,nounderscore] $(date +'%H:%M')"
 
-
 echo "$SPOTIFY $DATE $TIME" | sed 's/ *$/ /g'
