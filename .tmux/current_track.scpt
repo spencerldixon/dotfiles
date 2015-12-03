@@ -12,7 +12,7 @@ set AppleScript's text item delimiters to ":"
 set track_id to third text item of track_id
 set AppleScript's text item delimiters to {""}
 
-set message to "'" & track_name & "' by " & track_artist
+set message to "♫ '" & track_name & "' by " & track_artist
 
 if (spotifyState = "paused") then
   set message to message & " (" & spotifyState & ")"

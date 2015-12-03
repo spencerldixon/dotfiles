@@ -18,7 +18,6 @@ Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'tpope/vim-rails'
 Plugin 'ap/vim-css-color'
 Plugin 'mattn/emmet-vim'
-
 call vundle#end()
 
 "Follow this tutorial for installation
@@ -44,15 +43,14 @@ set ignorecase
 set smartcase
 syntax enable
 set relativenumber
+set timeoutlen=1000 ttimeoutlen=0
 set background=dark
-colorscheme heroku-monokai
+colorscheme base16-eighties "heroku-monokai
+
 " Use neocomplete.vim
 let g:neocomplete#sources#omni#input_patterns = {
 \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
 \}
-
-set timeoutlen=1000 ttimeoutlen=0
-" removes annoying delay in exiting/entering insert mode
 
 " Set leader to spacebar
 let mapleader = "\<Space>"
@@ -80,7 +78,7 @@ nnoremap <leader>d :bd<CR>
 
 " POWERLINE CONFIG
 let g:airline_powerline_fonts = 1
-let g:airline_theme           = 'airlineish'
+let g:airline_theme           = 'base16' "'airlineish'
 let g:airline#extensions#tabline#enabled = 1
 
 " CUSTOM AIRLINE CONFIG
@@ -92,35 +90,22 @@ let g:airline_section_y = airline#section#create(['mode', ' ', 'branch'])
 let g:airline_section_z = '%{strftime("%I:%M")}'
 
 " GOYO CONCENTRATION MODE
-
 let g:goyo_width = 120
-" Distraction-free mode
 nnoremap <silent> <leader>z :Goyo<cr>
 
 " LIMELIGHT
 nmap <Leader>l :Limelight!!<CR>
-
-" Color name (:help cterm-colors) or ANSI code
 let g:limelight_conceal_ctermfg = 'gray'
 let g:limelight_conceal_ctermfg = 240
-"
-" " Color name (:help gui-colors) or RGB color
 let g:limelight_conceal_guifg = 'DarkGray'
 let g:limelight_conceal_guifg = '#777777'
-"
 let g:limelight_default_coefficient = 0.7
-"
-"Number of preceding/following paragraphs to include (default: 0)
 let g:limelight_paragraph_span = 0
 
 " NERDTREE CONFIG
-" let NERDTreeShowHidden=0
-" autocmd vimenter * NERDTree
 map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeWinSize=38
 let NERDTreeShowHidden=1
-
-" Find file in nerdtree with Space+R
 map <leader>r :NERDTreeFind<CR>
 
 " CTRLP CONFIG - Vim Search/Finder
@@ -131,8 +116,8 @@ let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
 let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
 nnoremap <leader>f :CtrlP<CR>
-
 nnoremap <S-r> :CtrlPMRUFiles<CR>
+
 " SILVER SEARCH CONFIG
 if executable('ag')
   " Use ag over grep
@@ -142,24 +127,17 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
-
-
-
-" bind \ (backward slash) to grep shortcut
-
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-
 nnoremap \ :Ag<SPACE>
-
 nmap <silent> <up> :cprev<CR>
 nmap <silent> <down> :cnext<CR>
 
 " EMMETT CONFIG
 let g:user_emmet_leader_key='<C-Z>'
 
-
 " transparent background
 "highlight Normal  ctermbg=none
 "highlight NonText ctermbg=none
+
 
 
