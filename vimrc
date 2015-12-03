@@ -18,6 +18,7 @@ Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'tpope/vim-rails'
 Plugin 'ap/vim-css-color'
 Plugin 'mattn/emmet-vim'
+Plugin 'tpope/vim-obsession'
 call vundle#end()
 
 "Follow this tutorial for installation
@@ -133,7 +134,7 @@ nmap <silent> <up> :cprev<CR>
 nmap <silent> <down> :cnext<CR>
 
 " EMMETT CONFIG
-let g:user_emmet_leader_key='<C-Z>'
+let g:user_emmet_leader_key=','
 
 " transparent background
 "highlight Normal  ctermbg=none
