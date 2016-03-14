@@ -1,0 +1,30 @@
+pane	ors	0	:ors	1	:*	0	:/Users/spencerdixon/Rails/online_reporting_tool/app/views/loop_sources	1	vim	:/usr/local/bin/vim
+pane	ors	0	:ors	1	:*	1	:/Users/spencerdixon	0	bash	:
+pane	ors	0	:ors	1	:*	2	:/Users/spencerdixon	0	htop	:htop
+pane	ors	1	:ruby	0	: 	0	:/Users/spencerdixon/Rails/online_reporting_tool	1	ruby	:/Users/spencerdixon/.rvm/rubies/ruby-2.2.3/bin/ruby script/rails s
+pane	ors	2	:bash	0	: 	0	:/Users/spencerdixon/Rails/online_reporting_tool	1	bash	:
+pane	ors	3	:redis-server	0	: 	0	:/Users/spencerdixon/Rails/online_reporting_tool	1	redis-server	:redis-server *:6379
+pane	ors	4	:ruby	0	: 	0	:/Users/spencerdixon/Rails/online_reporting_tool	1	ruby	:sidekiq 3.3.4 online_reporting_tool [0 of 25 busy]    
+pane	ors	5	:bash	0	: 	0	:/Users/spencerdixon/dotfiles	1	bash	:
+pane	ors	6	:vim	0	:-	0	:/Users/spencerdixon/dotfiles/vim/colors	1	vim	:/usr/local/bin/vim
+pane	ors	6	:vim	0	:-	1	:/Users/spencerdixon	0	bash	:
+pane	ors	7	:vim	0	: 	0	:/Users/spencerdixon/Rails/online_reporting_tool	1	vim	:/usr/local/bin/vim
+pane	wukumurl	0	:bash	1	:*	0	:/Users/spencerdixon/Rails/wukumurl	1	bash	:
+pane	wukumurl	1	:ruby	0	:-	0	:/Users/spencerdixon/Rails/wukumurl	1	ruby	:/Users/spencerdixon/.rvm/rubies/ruby-2.1.1/bin/ruby script/rails s -p 4000
+pane	wukumurl	2	:ruby	0	: 	0	:/Users/spencerdixon/Rails/wukumurl	1	ruby	:/Users/spencerdixon/.rvm/rubies/ruby-2.1.1/bin/ruby script/rails c
+pane	wukumurl	3	:bash	0	: 	0	:/Users/spencerdixon	1	bash	:
+pane	wukumurl	4	:bash	0	: 	0	:/Users/spencerdixon/dotfiles	1	bash	:
+window	ors	0	1	:*	c56c,204x55,0,0{152x55,0,0,0,51x55,153,0[51x17,153,0,15,51x37,153,18,16]}
+window	ors	1	0	: 	c29f,204x55,0,0,2
+window	ors	2	0	: 	c2a6,204x55,0,0,9
+window	ors	3	0	: 	617f,204x55,0,0,10
+window	ors	4	0	: 	6180,204x55,0,0,11
+window	ors	5	0	: 	6181,204x55,0,0,12
+window	ors	6	0	:-	5447,204x55,0,0[204x27,0,0,13,204x27,0,28,17]
+window	ors	7	0	: 	6187,204x55,0,0,18
+window	wukumurl	0	1	:*	c2a0,204x55,0,0,3
+window	wukumurl	1	0	:-	c2a1,204x55,0,0,4
+window	wukumurl	2	0	: 	c2a2,204x55,0,0,5
+window	wukumurl	3	0	: 	c2a3,204x55,0,0,6
+window	wukumurl	4	0	: 	c2a4,204x55,0,0,7
+state	ors	wukumurl

@@ -1,0 +1,15 @@
+pane	elixir	0	:beam.smp	0	:-	0	:/Users/spencerdixon/Elixir	1	beam.smp	:/usr/local/lib/erlang/erts-7.1/bin/beam.smp -- -root /usr/local/lib/erlang -progname erl -- -home /Users/spencerdixon -- -pa /usr/local/Cellar/elixir/1.0.5/bin/../lib/eex/ebin /usr/local/Cellar/elixir/1.0.5/bin/../lib/elixir/ebin /usr/local/Cellar/elixir/1.0.5/bin/../lib/ex_unit/ebin /usr/local/Cellar/elixir/1.0.5/bin/../lib/iex/ebin /usr/local/Cellar/elixir/1.0.5/bin/../lib/logger/ebin /usr/local/Cellar/elixir/1.0.5/bin/../lib/mix/ebin -elixir ansi_enabled true -user Elixir.IEx.CLI -extra --no-halt --erl  -user Elixir.IEx.CLI +iex
+-zsh
+pane	elixir	1	:vim	1	:*	0	:/Users/spencerdixon/Elixir	1	vim	:/usr/local/bin/vim counter.exs
+-zsh
+pane	weblunch	0	:vim	0	:-	0	:/Users/spencerdixon/Rails/weblunch	1	vim	:/usr/local/bin/vim
+-zsh
+pane	weblunch	1	:ruby	1	:*	0	:/Users/spencerdixon/Rails/weblunch	0	ruby	:/Users/spencerdixon/.rvm/rubies/ruby-2.2.3/bin/ruby bin/rails s
+-zsh
+pane	weblunch	1	:ruby	1	:*	1	:/Users/spencerdixon/Rails/weblunch	1	ruby	:/Users/spencerdixon/.rvm/rubies/ruby-2.2.3/bin/ruby bin/rails c
+-zsh
+window	elixir	0	0	:-	a8bf,194x10,0,0,2
+window	elixir	1	1	:*	a8c4,194x10,0,0,7
+window	weblunch	0	0	:-	b29d,204x51,0,0,0
+window	weblunch	1	1	:*	653e,204x51,0,0{102x51,0,0,1,101x51,103,0,3}
+state	weblunch	weblunch

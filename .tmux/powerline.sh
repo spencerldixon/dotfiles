@@ -11,9 +11,18 @@ date_time_text_colour='#eeeeee'
 black='colour236'
 
 # Base16-Eighties Theme
-date_time_colour='colour01'
-spotify_text_colour='colour15'
-date_time_text_colour='colour00'
+#date_time_colour='colour04'
+#spotify_text_colour='colour15'
+#date_time_text_colour='colour15'
+#spotify_colour='colour01'
+#black="colour19"
+
+## Gruvbox theme
+#date_time_colour='colour10'
+#spotify_text_colour='colour00'
+#date_time_text_colour='colour00'
+#spotify_colour="colour06"
+#black="colour00"
 
 SPOTIFY="#[fg=${spotify_colour},bg=${black},nobold,noitalics,nounderscore]$RSEP#[fg=${spotify_text_colour},bg=${spotify_colour},nobold,noitalics,nounderscore] $(osascript ~/.tmux/current_track.scpt)"
 

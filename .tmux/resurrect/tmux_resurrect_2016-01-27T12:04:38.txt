@@ -1,0 +1,46 @@
+pane	demo-ors-api	0	:vim	0	:-	0	:/Users/spencerdixon/Rails/ors-api-demo	1	vim	:/usr/local/bin/vim
+-zsh
+pane	demo-ors-api	1	:ruby	0	: 	0	:/Users/spencerdixon/Rails/ors-api-demo	1	ruby	:/Users/spencerdixon/.rvm/rubies/ruby-2.2.3/bin/ruby bin/rails s -p 6667
+-zsh
+pane	demo-ors-api	2	:zsh	0	: 	0	:/Users/spencerdixon/Rails/ors-api-demo	1	zsh	:-zsh
+pane	demo-ors-api	3	:zsh	0	: 	0	:/Users/spencerdixon/Rails/ors-api-demo	1	zsh	:-zsh
+pane	demo-ors-api	4	:node	0	: 	0	:/Users/spencerdixon/Rails/ors-api-demo	1	node	:node
+-zsh
+pane	demo-ors-api	5	:[tmux]	1	:*	0	:/Users/spencerdixon/Rails/ors-api-demo	1	zsh	:-zsh
+pane	elixir	0	:beam.smp	0	:-	0	:/Users/spencerdixon/Elixir	1	zsh	:-zsh
+pane	elixir	1	:vim	1	:*	0	:/Users/spencerdixon/Elixir	1	zsh	:-zsh
+pane	intranet	0	:zsh	1	:*	0	:/Users/spencerdixon/Rails/intranet	1	zsh	:-zsh
+pane	intranet	1	:ruby	0	:-	0	:/Users/spencerdixon/Rails/intranet	1	ruby	:/Users/spencerdixon/.rvm/rubies/ruby-1.9.3-p551/bin/ruby script/rails s -p 9999
+-zsh
+pane	intranet	2	:ruby	0	: 	0	:/Users/spencerdixon/Rails/intranet	1	ruby	:/Users/spencerdixon/.rvm/rubies/ruby-1.9.3-p551/bin/ruby script/rails c
+-zsh
+pane	piggly	0	:vim	1	:*	0	:/Users/spencerdixon/Rails/piggly	1	vim	:/usr/local/bin/vim
+-zsh
+pane	wcmcio ssh	0	:zsh	1	:*	0	:/Users/spencerdixon/Rails	1	zsh	:-zsh
+pane	weblunch	0	:vim	1	:*	0	:/Users/spencerdixon/Rails/weblunch	1	vim	:/usr/local/bin/vim
+-zsh
+pane	weblunch	1	:ruby	0	:-	0	:/Users/spencerdixon/Rails/weblunch	1	ruby	:/Users/spencerdixon/.rvm/rubies/ruby-2.2.3/bin/ruby bin/rails s -p 3000
+-zsh
+pane	wukumurl	0	:zsh	0	:-	0	:/Users/spencerdixon/Rails/wukumurl	1	zsh	:-zsh
+pane	wukumurl	1	:zsh	1	:*	0	:/Users/spencerdixon/Rails/wukumurl	1	zsh	:-zsh
+pane	wukumurl	3	:server	0	: 	0	:/Users/spencerdixon/Rails/wukumurl	1	ruby	:/Users/spencerdixon/.rvm/rubies/ruby-2.2.3/bin/ruby script/rails s -p 4000
+-zsh
+window	demo-ors-api	0	0	:-	5981,204x51,0,0,50
+window	demo-ors-api	1	0	: 	5982,204x51,0,0,51
+window	demo-ors-api	2	0	: 	5986,204x51,0,0,55
+window	demo-ors-api	3	0	: 	5988,204x51,0,0,57
+window	demo-ors-api	4	0	: 	5989,204x51,0,0,58
+window	demo-ors-api	5	1	:*	598a,204x51,0,0,59
+window	elixir	0	0	:-	b29e,204x51,0,0,1
+window	elixir	1	1	:*	b29f,204x51,0,0,2
+window	intranet	0	1	:*	5983,204x51,0,0,52
+window	intranet	1	0	:-	5984,204x51,0,0,53
+window	intranet	2	0	: 	5985,204x51,0,0,54
+window	piggly	0	1	:*	5987,204x51,0,0,37
+window	wcmcio ssh	0	1	:*	5985,204x51,0,0,16
+window	weblunch	0	1	:*	5987,204x51,0,0,56
+window	weblunch	1	0	:-	b2a1,204x51,0,0,4
+window	wukumurl	0	0	:-	d982,204x51,0,0,23
+window	wukumurl	1	1	:*	5989,204x51,0,0,39
+window	wukumurl	3	0	: 	5981,204x51,0,0,12
+state	demo-ors-api	weblunch

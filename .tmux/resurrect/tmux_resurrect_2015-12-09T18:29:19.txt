@@ -1,0 +1,16 @@
+pane	0	0	:vimrc	1	:*	0	:/Users/spencerdixon/dotfiles	1	vim	:/usr/local/bin/vim /Users/spencerdixon/dotfiles/vimrc
+-zsh
+pane	0	1	:rs	0	:-	0	:/Users/spencerdixon/Rails/online_reporting_tool	1	ruby	:/Users/spencerdixon/.rvm/rubies/ruby-2.2.3/bin/ruby script/rails s
+pane	0	2	:redis-server	0	: 	0	:/Users/spencerdixon/Rails/online_reporting_tool	1	redis-server	:redis-server *:6379
+pane	0	3	:sideconf	0	: 	0	:/Users/spencerdixon/Rails/online_reporting_tool	1	ruby	:sidekiq 3.3.4 online_reporting_tool [0 of 25 busy]    
+pane	3	0	:~/Desktop	1	:*	0	:/Users/spencerdixon/Desktop	1	zsh	:-zsh
+pane	6	0	:~/Desktop	1	:*	0	:/Users/spencerdixon/Desktop	1	zsh	:-zsh
+pane	7	0	:~/Desktop	1	:*	0	:/Users/spencerdixon/Desktop	1	zsh	:-zsh
+window	0	0	1	:*	6180,204x55,0,0,11
+window	0	1	0	:-	c29e,204x55,0,0,1
+window	0	2	0	: 	c29f,204x55,0,0,2
+window	0	3	0	: 	c2a1,204x55,0,0,4
+window	3	0	1	:*	5b61,80x44,0,0,12
+window	6	0	1	:*	5c84,94x44,0,0,15
+window	7	0	1	:*	59a5,81x43,0,0,16
+state	7	

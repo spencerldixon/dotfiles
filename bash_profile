@@ -13,9 +13,6 @@ parse_git_branch() {
 
 export PS1="\[\e[00;37m\][\u] \[\e[0m\]\[\e[01;37m\]\W\[\e[0m\] \[\e[0;31m\][\$(parse_git_branch)]\[\e[00;37m\] >>>\[\e[0m\] "
 
-# Use SCM Breeze shortcuts for git
-
-[ -s "/Users/spencerdixon/.scm_breeze/scm_breeze.sh" ] && source "/Users/spencerdixon/.scm_breeze/scm_breeze.sh"
 
 # Make directories bold
 
@@ -52,3 +49,6 @@ alias smrandom='sudo spoof-mac.py randomize wi-fi; echo "Mac address spoofed!"; 
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # Finished adapting your PATH environment variable for use with MacPorts.
 
+# Use SCM Breeze shortcuts for git
+
+[ -s "/Users/spencerdixon/.scm_breeze/scm_breeze.sh" ] && source "/Users/spencerdixon/.scm_breeze/scm_breeze.sh"

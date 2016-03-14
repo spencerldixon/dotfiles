@@ -1,0 +1,19 @@
+pane	config	1	:vim	1	:*	0	:/Users/spencerdixon/.oh-my-zsh/custom	1	vim	:/usr/local/bin/vim pure.zsh-theme
+-zsh
+pane	config	1	:vim	1	:*	1	:/Users/spencerdixon/Desktop	0	zsh	:-zsh
+pane	ort	0	:..eporting_tool	1	:*	0	:/Users/spencerdixon/Rails/online_reporting_tool	1	zsh	:-zsh
+pane	ort	1	:rs	0	:-	0	:/Users/spencerdixon/Rails/online_reporting_tool	1	ruby	:/Users/spencerdixon/.rvm/rubies/ruby-2.2.3/bin/ruby script/rails s
+pane	ort	2	:redis-server	0	: 	0	:/Users/spencerdixon/Rails/online_reporting_tool	1	redis-server	:redis-server *:6379
+pane	ort	3	:sideconf	0	: 	0	:/Users/spencerdixon/Rails/online_reporting_tool	1	ruby	:sidekiq 3.3.4 online_reporting_tool [0 of 25 busy]    
+pane	wukumurl	0	:vim	0	:-	0	:/Users/spencerdixon/Rails/wukumurl/app/assets/stylesheets/components	1	vim	:/usr/local/bin/vim
+-zsh
+pane	wukumurl	1	:ruby	1	:*	0	:/Users/spencerdixon/Rails/wukumurl	1	ruby	:/Users/spencerdixon/.rvm/rubies/ruby-2.2.3/bin/ruby script/rails s -p 4000
+-zsh
+window	config	1	1	:*	d449,204x55,0,0[204x27,0,0,72,204x27,0,28,75]
+window	ort	0	1	:*	6183,204x55,0,0,52
+window	ort	1	0	:-	c29e,204x55,0,0,1
+window	ort	2	0	: 	c29f,204x55,0,0,2
+window	ort	3	0	: 	c2a1,204x55,0,0,4
+window	wukumurl	0	0	:-	e186,204x55,0,0,84
+window	wukumurl	1	1	:*	e187,204x55,0,0,85
+state	wukumurl	ort

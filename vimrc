@@ -19,6 +19,13 @@ Plugin 'tpope/vim-rails'
 Plugin 'ap/vim-css-color'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-obsession'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'chriskempson/base16-vim'
+Plugin 'morhetz/gruvbox'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'mattn/webapi-vim'
+Plugin 'alexbel/vim-rubygems'
+Plugin 'kchmck/vim-coffee-script'
 call vundle#end()
 
 "Follow this tutorial for installation
@@ -27,6 +34,7 @@ call vundle#end()
 " SET DEFAULTS (Color Scheme, Tab Spacing, etc.)
 set nocompatible
 filetype off
+set undofile
 set cursorline
 set laststatus=2
 set mouse=a
@@ -36,17 +44,19 @@ set shiftwidth=2
 set expandtab
 set title
 au BufWritePost .vimrc so ~/.vimrc " (automatically reload vimrc when it's saved)
-set autochdir
 set number
 set numberwidth=3
 set guifont=Menlo\ For\ Powerline
 set ignorecase
 set smartcase
+set incsearch
+set hlsearch
+set showmatch
 syntax enable
 set relativenumber
 set timeoutlen=1000 ttimeoutlen=0
 set background=dark
-colorscheme base16-eighties "heroku-monokai
+colorscheme gruvbox "heroku-monokai
 
 " Use neocomplete.vim
 let g:neocomplete#sources#omni#input_patterns = {
@@ -79,7 +89,7 @@ nnoremap <leader>d :bd<CR>
 
 " POWERLINE CONFIG
 let g:airline_powerline_fonts = 1
-let g:airline_theme           = 'base16' "'airlineish'
+let g:airline_theme           = 'gruvbox' "'airlineish'
 let g:airline#extensions#tabline#enabled = 1
 
 " CUSTOM AIRLINE CONFIG
@@ -140,5 +150,7 @@ let g:user_emmet_leader_key=','
 "highlight Normal  ctermbg=none
 "highlight NonText ctermbg=none
 
+" APPEND RECENT GEM VERSION TO GEM WITH SPACE + G
+nnoremap <leader>g :RubygemsAppendVersion<cr>
 
 
