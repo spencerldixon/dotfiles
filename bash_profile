@@ -52,3 +52,6 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # Use SCM Breeze shortcuts for git
 
 [ -s "/Users/spencerdixon/.scm_breeze/scm_breeze.sh" ] && source "/Users/spencerdixon/.scm_breeze/scm_breeze.sh"
+
+# added by Anaconda2 4.0.0 installer
+export PATH="/Users/spencerdixon/anaconda/bin:$PATH"

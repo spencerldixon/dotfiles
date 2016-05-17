@@ -26,6 +26,7 @@ Plugin 'elixir-lang/vim-elixir'
 Plugin 'mattn/webapi-vim'
 Plugin 'alexbel/vim-rubygems'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'w0ng/vim-hybrid'
 call vundle#end()
 
 "Follow this tutorial for installation
@@ -56,7 +57,8 @@ syntax enable
 set relativenumber
 set timeoutlen=1000 ttimeoutlen=0
 set background=dark
-colorscheme gruvbox "heroku-monokai
+colorscheme hybrid
+"gruvbox "heroku-monokai
 
 " Use neocomplete.vim
 let g:neocomplete#sources#omni#input_patterns = {
@@ -89,7 +91,7 @@ nnoremap <leader>d :bd<CR>
 
 " POWERLINE CONFIG
 let g:airline_powerline_fonts = 1
-let g:airline_theme           = 'gruvbox' "'airlineish'
+let g:airline_theme           = 'tomorrow'  "'gruvbox'
 let g:airline#extensions#tabline#enabled = 1
 
 " CUSTOM AIRLINE CONFIG
