@@ -28,7 +28,7 @@
 date_time_colour=black
 spotify_text_colour='colour15'
 date_time_text_colour=white
-spotify_colour=cyan
+spotify_colour=blue
 black=black
 
 SPOTIFY="#[fg=${spotify_colour},bg=${black},nobold,noitalics,nounderscore]$RSEP#[fg=${spotify_text_colour},bg=${spotify_colour},nobold,noitalics,nounderscore] $(osascript ~/.tmux/current_track.scpt)"
@@ -37,4 +37,4 @@ DATE="#[fg=${date_time_colour},bg=${spotify_colour},nobold,noitalics,nounderscor
 
 TIME="#[fg=${date_time_text_colour},bg=${date_time_colour},nobold,noitalics,nounderscore]#[fg=${date_time_text_colour},bg=${date_time_colour},nobold,noitalics,nounderscore] $(date +'%H:%M')"
 
-echo "$SPOTIFY" "$DATE | Hustle Mode: ON | $TIME" | sed 's/ *$/ /g'
+echo "$SPOTIFY" "$DATE | $TIME" | sed 's/ *$/ /g'
