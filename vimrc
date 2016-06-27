@@ -27,7 +27,7 @@ Plugin 'mattn/webapi-vim'
 Plugin 'alexbel/vim-rubygems'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'w0ng/vim-hybrid'
-Plugin 'lucidstack/ctrlp-tmux'
+Plugin 'lucidstack/ctrlp-tmux.vim'
 call vundle#end()
 
 "Follow this tutorial for installation
