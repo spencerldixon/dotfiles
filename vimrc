@@ -27,6 +27,7 @@ Plugin 'mattn/webapi-vim'
 Plugin 'alexbel/vim-rubygems'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'w0ng/vim-hybrid'
+Plugin 'lucidstack/ctrlp-tmux'
 call vundle#end()
 
 "Follow this tutorial for installation
@@ -127,9 +128,10 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
 let g:ctrlp_cmd = 'CtrlPLastMode'
-let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
+let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir', 'tmux']
 nnoremap <leader>f :CtrlP<CR>
 nnoremap <S-r> :CtrlPMRUFiles<CR>
+nnoremap <Leader>s :CtrlPTmux<CR>
 
 " SILVER SEARCH CONFIG
 if executable('ag')
