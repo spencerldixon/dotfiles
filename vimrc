@@ -28,6 +28,8 @@ Plugin 'alexbel/vim-rubygems'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'lucidstack/ctrlp-tmux.vim'
+Plugin 'mtscout6/vim-cjsx'
+Plugin 'scrooloose/syntastic'
 call vundle#end()
 
 "Follow this tutorial for installation
@@ -156,5 +158,8 @@ let g:user_emmet_leader_key=','
 
 " APPEND RECENT GEM VERSION TO GEM WITH SPACE + G
 nnoremap <leader>g :RubygemsAppendVersion<cr>
+
+" SYNTASTIC
+let g:syntastic_coffee_checkers = ['coffeelint']
 
 
