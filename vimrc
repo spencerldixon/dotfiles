@@ -14,7 +14,6 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
 Plugin 'paranoida/vim-airlineish'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'tpope/vim-rails'
 Plugin 'ap/vim-css-color'
 Plugin 'mattn/emmet-vim'
@@ -29,7 +28,6 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'lucidstack/ctrlp-tmux.vim'
 Plugin 'mtscout6/vim-cjsx'
-Plugin 'scrooloose/syntastic'
 call vundle#end()
 
 "Follow this tutorial for installation
@@ -56,6 +54,8 @@ set smartcase
 set incsearch
 set hlsearch
 set showmatch
+set nobackup
+set noswapfile
 syntax enable
 set relativenumber
 set timeoutlen=1000 ttimeoutlen=0
@@ -153,8 +153,8 @@ nmap <silent> <down> :cnext<CR>
 let g:user_emmet_leader_key=','
 
 " transparent background
-"highlight Normal  ctermbg=none
-"highlight NonText ctermbg=none
+highlight Normal  ctermbg=none
+highlight NonText ctermbg=none
 
 " APPEND RECENT GEM VERSION TO GEM WITH SPACE + G
 nnoremap <leader>g :RubygemsAppendVersion<cr>
@@ -162,4 +162,6 @@ nnoremap <leader>g :RubygemsAppendVersion<cr>
 " SYNTASTIC
 let g:syntastic_coffee_checkers = ['coffeelint']
 
+" Pomodoro
+nnoremap <leader>t :!thyme -d<cr>
 

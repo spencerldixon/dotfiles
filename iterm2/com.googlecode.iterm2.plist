@@ -6,6 +6,8 @@
 	<true/>
 	<key>AllowClipboardAccess</key>
 	<false/>
+	<key>AlternateMouseScroll</key>
+	<true/>
 	<key>AnimateDimming</key>
 	<false/>
 	<key>AppleAntiAliasingThreshold</key>
@@ -3318,7 +3320,7 @@
 	<key>NSFontPanelAttributes</key>
 	<string>1, 0</string>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/Documents</string>
+	<string>~/Desktop</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{712, 459}</string>
 	<key>NSNavPanelExpandedSizeForSaveMode</key>
@@ -3344,7 +3346,7 @@
 		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
 		hAErATGG
 		</data>
-		<string>307</string>
+		<string>322</string>
 	</array>
 	<key>NSTableView Hidden Columns KeyBingingTable</key>
 	<array/>
@@ -3371,13 +3373,13 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>177 76 445 77 0 0 1440 900 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>480 400 606 456 0 0 1440 877 </string>
+	<string>480 420 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>410 391 620 392 0 0 1440 900 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>58 233 572 453 0 0 1440 877 </string>
+	<string>0 421 572 453 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>416 286 572 453 0 0 1440 900 </string>
+	<string>416 318 572 453 0 0 1440 900 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>811 137 570 427 0 0 1440 900 </string>
 	<key>NeverWarnAboutShortLivedSessions_487525D7-C4E6-47B6-B3E2-FD794A324276</key>
@@ -3456,12 +3458,16 @@
 			</dict>
 			<key>Ansi 15 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.72799122333526611</real>
+				<real>0.87565046548843384</real>
+				<key>Color Space</key>
+				<string>Calibrated</string>
 				<key>Green Component</key>
-				<real>0.73772752285003662</real>
+				<real>0.87563550472259521</real>
 				<key>Red Component</key>
-				<real>0.72378784418106079</real>
+				<real>0.87566184997558594</real>
 			</dict>
 			<key>Ansi 2 Color</key>
 			<dict>
@@ -3510,12 +3516,16 @@
 			</dict>
 			<key>Ansi 7 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.42652279138565063</real>
+				<real>0.42466866970062256</real>
+				<key>Color Space</key>
+				<string>Calibrated</string>
 				<key>Green Component</key>
-				<real>0.3944053053855896</real>
+				<real>0.42466151714324951</real>
 				<key>Red Component</key>
-				<real>0.36455416679382324</real>
+				<real>0.42467421293258667</real>
 			</dict>
 			<key>Ansi 8 Color</key>
 			<dict>
@@ -3550,8 +3560,6 @@
 			</dict>
 			<key>Background Image Is Tiled</key>
 			<false/>
-			<key>Background Image Location</key>
-			<string></string>
 			<key>Badge Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -3566,7 +3574,7 @@
 				<real>1</real>
 			</dict>
 			<key>Blend</key>
-			<real>0.050000000000000003</real>
+			<real>0.31193033854166663</real>
 			<key>Blink Allowed</key>
 			<true/>
 			<key>Blinking Cursor</key>
@@ -3643,12 +3651,16 @@
 			<false/>
 			<key>Foreground Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.72941176470588232</real>
+				<real>0.87565046548843384</real>
+				<key>Color Space</key>
+				<string>Calibrated</string>
 				<key>Green Component</key>
-				<real>0.73725490196078436</real>
+				<real>0.87563550472259521</real>
 				<key>Red Component</key>
-				<real>0.72156862745098038</real>
+				<real>0.87566184997558594</real>
 			</dict>
 			<key>Guid</key>
 			<string>487525D7-C4E6-47B6-B3E2-FD794A324276</string>
@@ -4166,12 +4178,22 @@
 			<string>~/Rails</string>
 		</dict>
 	</array>
+	<key>NoSyncCommandHistoryHasEverBeenUsed</key>
+	<true/>
+	<key>NoSyncConfirmBeta</key>
+	<true/>
+	<key>NoSyncHaveWarnedAboutIncompatibleSoftware</key>
+	<true/>
+	<key>NoSyncInstallationId</key>
+	<string>BA66EE61-09B0-47C0-8E47-0E8E593F5DF2</string>
 	<key>NoSyncLastTipTime</key>
 	<real>480518187.97986197</real>
 	<key>NoSyncNeverRemindPrefsChangesCopy</key>
 	<true/>
 	<key>NoSyncPermissionToShowTip</key>
 	<true/>
+	<key>NoSyncTimeOfFirstLaunchForIncompatibilityWarnings</key>
+	<real>485380689.86247897</real>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>470758752.80065501</real>
 	<key>NoSyncTimeOfLastPromo</key>
@@ -4316,11 +4338,11 @@
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/nightly.xml</string>
+	<string>https://iterm2.com/appcasts/nightly.xml?shard=72</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-05-19T17:15:27Z</date>
+	<date>2017-03-01T19:49:13Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -4368,7 +4390,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>2.9.20160126-nightly</string>
+	<string>3.0.20160702-nightly</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
