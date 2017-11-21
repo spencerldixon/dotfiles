@@ -28,6 +28,7 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'lucidstack/ctrlp-tmux.vim'
 Plugin 'mtscout6/vim-cjsx'
+Plugin 'vim-scripts/TaskList.vim'
 call vundle#end()
 
 "Follow this tutorial for installation
@@ -123,6 +124,7 @@ map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeWinSize=38
 let NERDTreeShowHidden=1
 map <leader>r :NERDTreeFind<CR>
+" autocmd VimEnter * if argc() == 0 | NERDTree | endif
 
 " CTRLP CONFIG - Vim Search/Finder
 set runtimepath^=~/.vim/bundle/ctrlp.vim
@@ -162,6 +164,8 @@ nnoremap <leader>g :RubygemsAppendVersion<cr>
 " SYNTASTIC
 let g:syntastic_coffee_checkers = ['coffeelint']
 
-" Pomodoro
-nnoremap <leader>t :!thyme -d<cr>
+" Shared clipboard with osx
+if has('mac')
+  set clipboard=unnamed
+end
 
