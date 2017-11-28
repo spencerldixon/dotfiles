@@ -6,15 +6,9 @@
 
 ########## Variables
 
-<<<<<<< HEAD
 dir=$HOME/dotfiles                            # dotfiles directory
 olddir=$HOME/dotfiles_old                     # old dotfiles backup directory
 files="vimrc .tmux .tmux.conf .zshrc"    # list of files/folders to symlink in homedir
-=======
-dir=$HOME/dotfiles                    # dotfiles directory
-olddir=$HOME/dotfiles_old             # old dotfiles backup directory
-files="bashrc .vimrc .vim bash_profile tmux .tmux.conf .zshrc"    # list of files/folders to symlink in homedir
->>>>>>> 0d31c87aa40c97524535f78b061ea4fef9976e40
 
 ##########
 
@@ -35,3 +29,7 @@ for file in $files; do
     echo "Creating symlink to $file in home directory."
     ln  -s $dir/$file $HOME/$file
 done
+
+# Move geometry
+
+ln -s $dir/geometry.zsh-theme $HOME/.oh-my-zsh/custom/themes/geometry.zsh-theme
