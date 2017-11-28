@@ -32,4 +32,6 @@ done
 
 # Move geometry
 
+cd ~
+mkdir -p .oh-my-zsh/custom/themes
 ln -s $dir/geometry.zsh-theme $HOME/.oh-my-zsh/custom/themes/geometry.zsh-theme
