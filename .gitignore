@@ -2,4 +2,6 @@
 .tmux/resurrect/last
 .tmux/plugins/*
 .DS_Store
+.vim/bundle/*
+.vim/colors/*
 vim/*

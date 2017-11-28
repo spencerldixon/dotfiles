@@ -26,6 +26,10 @@ Run `tmux prefix (Ctrl + A) + I` to install tmux plugins
 
 Set the iTerm colour scheme to Hybrid.
 
+## Fonts
+
+Select the included patched Menlo for Powerline font from the `/fonts` directory, install it, and then select it as the terminal font
+
 ## Vim Mappings
 
 Leader is set to the space bar
