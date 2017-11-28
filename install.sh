@@ -8,7 +8,7 @@
 
 dir=$HOME/dotfiles                            # dotfiles directory
 olddir=$HOME/dotfiles_old                     # old dotfiles backup directory
-files=".vimrc .tmux .tmux.conf .zshrc"    # list of files/folders to symlink in homedir
+files=".vimrc .tmux.conf .zshrc"              # list of files to symlink in homedir
 
 ##########
 
@@ -35,3 +35,9 @@ done
 cd ~
 mkdir -p .oh-my-zsh/custom/themes
 ln -s $dir/geometry.zsh-theme $HOME/.oh-my-zsh/custom/themes/geometry.zsh-theme
+
+# Copy tmux files
+
+cd ~
+cp -R $HOME/dotfiles/.tmux $HOME/
+
