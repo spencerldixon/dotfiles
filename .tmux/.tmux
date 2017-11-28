@@ -1,1 +1,0 @@
-/Users/spencerdixon/dotfiles/.tmux

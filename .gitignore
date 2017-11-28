@@ -1,2 +1,4 @@
 .tmux/resurrect/*
 .tmux/resurrect/last
+.DS_Store
+vim/*

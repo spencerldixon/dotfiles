@@ -22,6 +22,31 @@ chmod +x install.sh
 ./install.sh
 ```
 
+Run `tmux prefix (Ctrl + A) + I` to install tmux plugins
+
+Set the iTerm colour scheme to Hybrid.
+
+## Vim Mappings
+
+Leader is set to the space bar
+
+| Command | Function |
+|---|---|
+| Tab | Change/cycle window |
+| Backspace | Go to the top of the file |
+| Enter | Go to the bottom of the file |
+| `<leader> + w` | Write file |
+| `<leader> + n` | Next buffer |
+| `<leader> + p` | Previous buffer |
+| `<leader> + d` | Delete buffer |
+| `<leader> + z` | Toggle goyo for distraction free coding |
+| `<leader> + l` | Toggle limelight for focusing on one block at a time |
+| `<leader> + s` | Show tmux sessions like CtrlP |
+| `<leader> + f` | Show CtrlP finder |
+| `<leader> + ,` | Use Emmet |
+| `,,` | Emmet-ify existing thing |
+| `<leader> + gg` | Append gem version |
+
 ## Updating
 
 It's just git! Pull and push as you would normally. You will need to run the installation script each time to copy new files and folders.

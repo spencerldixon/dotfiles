@@ -1,7 +1,7 @@
 #!/bin/sh
 
-#LSEP=⮁
-#RSEP=
+LSEP= #⮁
+RSEP=  #
 
 # Monokai theme
 #spotify_colour='#1ABD53'
