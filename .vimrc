@@ -28,6 +28,8 @@ Plugin 'lucidstack/ctrlp-tmux.vim'
 Plugin 'mtscout6/vim-cjsx'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'vim-syntastic/syntastic'
+Plugin 'junegunn/limelight.vim'
+Plugin 'mattn/webapi-vim'
 call vundle#end()
 
 " ESSENTIALS AND DEFAILTS (Color Scheme, Tab Spacing, etc.)
@@ -58,9 +60,7 @@ set relativenumber
 set timeoutlen=1000 ttimeoutlen=0
 
 " Shared clipboard with osx
-if has('mac')
-  set clipboard=unnamed
-end
+set clipboard=unnamed
 
 
 " COLOURSCHEME
@@ -97,8 +97,8 @@ filetype plugin indent on
 " Keymappings
 nnoremap <leader>p :bp<CR> " Previous buffer
 nnoremap <leader>n :bn<CR> " Next buffer
-nnoremap <tab>   <C-w>w    " Change window
 nnoremap <leader>d :bd<CR> " Delete buffer
+nnoremap <tab> <C-w>w
 
 
 " NERDTREE CONFIG
@@ -107,6 +107,7 @@ map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeWinSize=38
 let NERDTreeShowHidden=1
 map <leader>r :NERDTreeFind<CR>
+let g:NERDTreeWinPos = "left"
 
 " AIRLINE CONFIG
 
@@ -133,6 +134,9 @@ let g:limelight_conceal_guifg = 'DarkGray'
 let g:limelight_conceal_guifg = '#777777 '
 let g:limelight_default_coefficient = 0.7
 let g:limelight_paragraph_span = 0
+
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
 
 
 " NERDCOMMENTER SETTINGS

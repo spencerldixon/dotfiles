@@ -39,5 +39,7 @@ ln -s $dir/geometry.zsh-theme $HOME/.oh-my-zsh/custom/themes/geometry.zsh-theme
 # Copy tmux files
 
 cd ~
-cp -R $HOME/dotfiles/.tmux $HOME/
+cp -R $dir/.tmux $HOME/
 
+# Symlink the global gitignore
+ln -s $dir/.gitignore_global $HOME/.gitignore_global
