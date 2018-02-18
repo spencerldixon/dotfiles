@@ -156,16 +156,9 @@ lc () { ruby ~/bin/colorls/colorls.rb $1; }
 
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="/usr/local/opt/openssl/bin:$PATH"
-
-# Load rbenv automatically
-eval "$(rbenv init -)"
 
 export PATH="/Users/spencerdixon/anaconda/bin:$PATH"
 
