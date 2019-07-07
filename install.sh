@@ -43,3 +43,6 @@ cp -R $dir/.tmux $HOME/
 
 # Symlink the global gitignore
 ln -s $dir/.gitignore_global $HOME/.gitignore_global
+
+# Set global gitignore
+git config --global core.excludesfile ~/.gitignore_global
