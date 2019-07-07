@@ -79,7 +79,6 @@ plugins=(git bundler osx rake ruby)
 
 # User configuration
 
-export PATH="/Users/spencerdixon/.rvm/gems/ruby-2.2.3/bin:/Users/spencerdixon/.rvm/gems/ruby-2.2.3@global/bin:/Users/spencerdixon/.rvm/rubies/ruby-2.2.3/bin:/Users/spencerdixon/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -163,6 +162,5 @@ export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="/Users/spencerdixon/anaconda/bin:$PATH"
 
 export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin"
-export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
 export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
 

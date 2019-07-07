@@ -30,6 +30,9 @@ Plugin 'w0ng/vim-hybrid'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'junegunn/limelight.vim'
 Plugin 'mattn/webapi-vim'
+Plugin 'posva/vim-vue'
+Plugin 'tomlion/vim-solidity'
+Plugin 'prettier/vim-prettier'
 call vundle#end()
 
 " ESSENTIALS AND DEFAILTS (Color Scheme, Tab Spacing, etc.)
@@ -56,7 +59,7 @@ set showmatch
 set nobackup
 set noswapfile
 syntax enable
-set relativenumber
+" set relativenumber
 set timeoutlen=1000 ttimeoutlen=0
 
 " Shared clipboard with osx
@@ -79,6 +82,15 @@ let g:mapleader = "\<Space>"
 
 " Fast reload of vimrc
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" copy and paste to from system clipboard
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+
 
 " Strip trailing whitespaces on save
 autocmd BufWritePre * :%s/\s\+$//e
@@ -183,4 +195,9 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_coffee_checkers = ['coffeelint']
+let g:syntastic_python_checkers = ['python']
 
+" RUN PRETTIER ON SAVE
+" nmap <Leader>py <Plug>(Prettier)
+" let g:prettier#autoformat = 0
+" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
