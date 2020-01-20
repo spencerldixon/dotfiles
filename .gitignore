@@ -1,7 +1,12 @@
 .tmux/resurrect/*
 .tmux/resurrect/last
 .tmux/plugins/*
-.DS_Store
 .vim/bundle/*
 .vim/colors/*
 vim/*
+*.swp
+*.swo
+*.swn
+*.un~
+.DS_Store
+.DS_Store?

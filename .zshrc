@@ -105,7 +105,8 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Settings for SCM Breeze shortcuts
-[ -s "/Users/spencerdixon/.scm_breeze/scm_breeze.sh" ] && source "/Users/spencerdixon/.scm_breeze/scm_breeze.sh"
+# [ -s "/Users/spencerdixon/.scm_breeze/scm_breeze.sh" ] && source "/Users/spencerdixon/.scm_breeze/scm_breeze.sh"
+[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 #
 
 # Colorize icons in ls with - https://github.com/athityakumar/colorls
@@ -152,6 +153,9 @@ lc () { ruby ~/bin/colorls/colorls.rb $1; }
  alias ciaclean='gclean'
  alias flushdns='sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder'
  alias lc='lc -r'
+ alias findrails='lsof -wni tcp:3000'
+ alias killrails='kill -9 '
+ alias taskdone='osascript ~/dotfiles/done.scpt'
 
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
