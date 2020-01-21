@@ -121,6 +121,7 @@ lc () { ruby ~/bin/colorls/colorls.rb $1; }
  alias zshconfig="v ~/.zshrc && . ~/.zshrc"
  alias zshrc="zshconfig"
  alias vimrc="v ~/dotfiles/.vimrc"
+ alias babushkadeps="v ~/.babushka/sources/spencerldixon"
  alias dotfiles="v ~/dotfiles"
  alias tmuxreload="tmux source-file ~/.tmux.conf"
  alias tmuxconfig="v ~/dotfiles/.tmux.conf && tmuxreload"
