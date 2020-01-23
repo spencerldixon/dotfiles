@@ -7,8 +7,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-Plugin 'itchyny/lightline.vim'
-Plugin 'bling/vim-bufferline'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree.git'
@@ -125,6 +123,7 @@ let g:NERDTreeWinPos = "left"
 
 let g:airline_theme='tomorrow'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show=1
 let g:airline_section_a = airline#section#create(['mode', ' ', 'branch'])
 let g:airline_section_b = airline#section#create(['%F', ' ', '%m'])
 let g:airline_section_c = ''
@@ -175,6 +174,17 @@ nnoremap <leader>f :CtrlP<CR>
 nnoremap <S-r> :CtrlPMRUFiles<CR>
 nnoremap <Leader>s :CtrlPTmux<CR>
 
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+
+  " " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
 " EMMETT CONFIG
 
 let g:user_emmet_leader_key=','
@@ -185,7 +195,6 @@ let g:user_emmet_leader_key=','
 nnoremap <leader>g :RubygemsAppendVersion<cr>
 
 " SYNTASTIC CONFIG
-
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
