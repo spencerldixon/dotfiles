@@ -31,6 +31,7 @@ Plugin 'mattn/webapi-vim'
 Plugin 'posva/vim-vue'
 Plugin 'tomlion/vim-solidity'
 Plugin 'prettier/vim-prettier'
+Plugin 'dyng/ctrlsf.vim'
 call vundle#end()
 
 " ESSENTIALS AND DEFAILTS (Color Scheme, Tab Spacing, etc.)
@@ -161,6 +162,10 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
+" CTRLSF
+
+nmap <Leader>s <Plug>CtrlSFPrompt
+
 
 " CTRL P SETTINGS
 
@@ -172,7 +177,6 @@ let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir', 'tmux']
 nnoremap <leader>f :CtrlP<CR>
 nnoremap <S-r> :CtrlPMRUFiles<CR>
-nnoremap <Leader>s :CtrlPTmux<CR>
 
 if executable('ag')
   " Use ag over grep
@@ -188,7 +192,6 @@ endif
 " EMMETT CONFIG
 
 let g:user_emmet_leader_key=','
-
 
 " APPEND RECENT GEM VERSION TO GEM WITH SPACE + G
 
