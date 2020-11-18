@@ -67,7 +67,7 @@ set clipboard=unnamed
 
 " COLOURSCHEME
 
-set background=dark
+" set background=dark
 colorscheme hybrid
 set guifont=Menlo\ For\ Powerline
 let g:hybrid_custom_term_colors = 1
