@@ -156,10 +156,9 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 
-
 " FZF SETTINGS
 
-nnoremap <leader>f :GFiles<CR> " Find files
+nnoremap <leader>f :GFiles<CR>
 nnoremap <Leader>s :Ag<CR>
 
 if executable('ag')
