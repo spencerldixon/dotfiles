@@ -2,7 +2,6 @@
 
 set rtp+=~/.vim/bundle/Vundle.vim
 
-
 " PLUGINS (Put all plugins in here)
 
 call vundle#begin()
@@ -11,8 +10,6 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'junegunn/goyo.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-rails'
@@ -21,20 +18,16 @@ Plugin 'mattn/emmet-vim'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'alexbel/vim-rubygems'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'lucidstack/ctrlp-tmux.vim'
 Plugin 'mtscout6/vim-cjsx'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'junegunn/limelight.vim'
-Plugin 'mattn/webapi-vim'
-Plugin 'posva/vim-vue'
-Plugin 'tomlion/vim-solidity'
 Plugin 'prettier/vim-prettier'
-Plugin 'dyng/ctrlsf.vim'
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plugin 'junegunn/fzf.vim'
 call vundle#end()
 
-" ESSENTIALS AND DEFAILTS (Color Scheme, Tab Spacing, etc.)
+" ESSENTIALS AND DEFAULTS (Color Scheme, Tab Spacing, etc.)
 
 set nocompatible
 filetype off
@@ -58,12 +51,12 @@ set showmatch
 set nobackup
 set noswapfile
 syntax enable
+
 " set relativenumber
 set timeoutlen=1000 ttimeoutlen=0
 
 " Shared clipboard with osx
 set clipboard=unnamed
-
 
 " COLOURSCHEME
 
@@ -162,31 +155,16 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
-" CTRLSF
-
-nmap <Leader>s <Plug>CtrlSFPrompt
 
 
-" CTRL P SETTINGS
+" FZF SETTINGS
 
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
-let g:ctrlp_cmd = 'CtrlPLastMode'
-let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir', 'tmux']
-nnoremap <leader>f :CtrlP<CR>
-nnoremap <S-r> :CtrlPMRUFiles<CR>
+nnoremap <leader>f :GFiles<CR> " Find files
+nnoremap <Leader>s :Ag<CR>
 
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-
-  " " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
 endif
 
 " EMMETT CONFIG
