@@ -110,7 +110,7 @@ source $ZSH/oh-my-zsh.sh
 #
 
 # Colorize icons in ls with - https://github.com/athityakumar/colorls
-lc () { ruby ~/bin/colorls/colorls.rb $1; }
+# lc () { ruby ~/bin/colorls/colorls.rb $1; }
 
 # Example aliases
  alias rs="rails s"
@@ -168,4 +168,9 @@ export PATH="/Users/spencerdixon/anaconda/bin:$PATH"
 
 export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin"
 export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
+
+export PATH="${HOMEBREW_PREFIX}/opt/postgresql@12/bin:$PATH"
+export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/postgresql@12/lib"
+export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/postgresql@12/include"
+export PKG_CONFIG_PATH="${HOMEBREW_PREFIX}/opt/postgresql@12/lib/pkgconfig"
 
