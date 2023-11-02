@@ -159,7 +159,7 @@ let g:NERDTrimTrailingWhitespace = 1
 " FZF SETTINGS
 
 nnoremap <leader>f :GFiles<CR>
-nnoremap <Leader>s :Ag<CR>
+nnoremap <Leader>s :Rg<CR>
 
 if executable('ag')
   " Use ag over grep
