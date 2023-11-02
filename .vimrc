@@ -25,6 +25,7 @@ Plugin 'junegunn/limelight.vim'
 Plugin 'prettier/vim-prettier'
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
+Plugin 'ludovicchabant/vim-gutentags'
 call vundle#end()
 
 " ESSENTIALS AND DEFAULTS (Color Scheme, Tab Spacing, etc.)
@@ -137,7 +138,7 @@ let g:limelight_conceal_ctermfg = 'gray'
 let g:limelight_conceal_ctermfg = 240
 let g:limelight_conceal_guifg = 'DarkGray'
 let g:limelight_conceal_guifg = '#777777 '
-let g:limelight_default_coefficient = 0.7
+let g:limelight_default_coefficient = 0.9
 let g:limelight_paragraph_span = 0
 
 autocmd! User GoyoEnter Limelight
@@ -159,13 +160,18 @@ let g:NERDTrimTrailingWhitespace = 1
 
 " FZF SETTINGS
 
-nnoremap <leader>f :GFiles<CR> " Find files
+nnoremap <leader>f :GFiles<CR>
 nnoremap <Leader>s :Ag<CR>
+nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>t :Tags<CR>
 
-if executable('ag')
+" GUTENTAGS
+set statusline+=%{gutentags#statusline()}
+
+" if executable('ag')
   " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-endif
+  " set grepprg=ag\ --nogroup\ --nocolor
+" endif
 
 " EMMETT CONFIG
 
