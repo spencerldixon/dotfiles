@@ -157,13 +157,12 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 
-
 " FZF SETTINGS
 
 nnoremap <leader>f :GFiles<CR>
-nnoremap <Leader>s :Ag<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>t :Tags<CR>
+nnoremap <Leader>s :Rg<CR>
 
 " GUTENTAGS
 set statusline+=%{gutentags#statusline()}
