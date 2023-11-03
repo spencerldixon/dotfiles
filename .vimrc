@@ -25,7 +25,6 @@ Plugin 'junegunn/limelight.vim'
 Plugin 'prettier/vim-prettier'
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
-Plugin 'ludovicchabant/vim-gutentags'
 call vundle#end()
 
 " ESSENTIALS AND DEFAULTS (Color Scheme, Tab Spacing, etc.)
@@ -158,19 +157,10 @@ let g:NERDTrimTrailingWhitespace = 1
 
 
 " FZF SETTINGS
-
 nnoremap <leader>f :GFiles<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>t :Tags<CR>
 nnoremap <Leader>s :Rg<CR>
-
-" GUTENTAGS
-set statusline+=%{gutentags#statusline()}
-
-" if executable('ag')
-  " Use ag over grep
-  " set grepprg=ag\ --nogroup\ --nocolor
-" endif
 
 " EMMETT CONFIG
 
@@ -181,6 +171,7 @@ let g:user_emmet_leader_key=','
 nnoremap <leader>g :RubygemsAppendVersion<cr>
 
 " SYNTASTIC CONFIG
+
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -193,6 +184,7 @@ let g:syntastic_coffee_checkers = ['coffeelint']
 let g:syntastic_python_checkers = ['python']
 
 " RUN PRETTIER ON SAVE
+
 " nmap <Leader>py <Plug>(Prettier)
 " let g:prettier#autoformat = 0
 " autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
