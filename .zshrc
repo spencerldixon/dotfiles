@@ -146,17 +146,15 @@ source $ZSH/oh-my-zsh.sh
  alias smlist='spoof-mac.py list --wifi'
  alias smrandom='sudo spoof-mac.py randomize wi-fi; echo "Mac address spoofed!"; spoof-mac.py list --wifi'
  alias theme='v ~/.oh-my-zsh/custom/themes/geometry.zsh-theme'
- alias beyonce='osascript ~/dotfiles/beyonce.scpt && for (( c=1; c<=40; c++)) ; do echo "👑 🐝 🍋 " && sleep 0.2; done'
  alias newpost='./initpost.sh -c'
  alias firefox='open /Applications/Firefox.app'
  alias ngrok='~/Rails/./ngrok http'
- alias gclean="git branch --merged origin/master | grep -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
+ alias gclean="git branch --merged origin/main | grep -v '\\*\\|main\\|develop' | xargs -n 1 git branch -d"
  alias ciaclean='gclean'
  alias flushdns='sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder'
  alias lc='lc -r'
  alias findrails='lsof -wni tcp:3000'
  alias killrails='kill -9 '
- alias taskdone='osascript ~/dotfiles/done.scpt'
 
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 

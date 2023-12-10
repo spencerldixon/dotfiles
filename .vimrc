@@ -25,6 +25,7 @@ Plugin 'junegunn/limelight.vim'
 Plugin 'prettier/vim-prettier'
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
+Plugin 'mattn/webapi-vim'
 call vundle#end()
 
 " ESSENTIALS AND DEFAULTS (Color Scheme, Tab Spacing, etc.)
