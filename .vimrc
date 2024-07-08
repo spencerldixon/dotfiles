@@ -126,11 +126,9 @@ let g:airline_section_x = airline#section#create(['Line ', '%l', ' of ', '%L'])
 let g:airline_section_y = airline#section#create(['mode', ' ', 'branch'])
 let g:airline_section_z = '%{strftime("%I:%M")}'
 
-
 " GOYO CONCENTRATION MODE
 let g:goyo_width = 120
 nnoremap <silent> <leader>z :Goyo<cr>
-
 
 " LIMELIGHT
 nmap <Leader>l :Limelight!!<CR>
@@ -144,7 +142,6 @@ let g:limelight_paragraph_span = 0
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 
-
 " NERDCOMMENTER SETTINGS
 
 " Add spaces after comment delimiters by default
@@ -155,7 +152,6 @@ let g:NERDCommentEmptyLines = 1
 
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
-
 
 " FZF SETTINGS
 nnoremap <leader>f :GFiles<CR>
