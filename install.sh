@@ -33,8 +33,8 @@ done
 
 # Symlink geometry (zsh theme)
 cd ~
-mkdir -p .oh-my-zsh/themes
-ln -s $dir/.oh-my-zsh/themes/geometry.zsh-theme $HOME/.oh-my-zsh/themes/geometry.zsh-theme
+mkdir -p .oh-my-zsh/custom/themes
+ln -s $dir/.oh-my-zsh/custom/themes/geometry.zsh-theme $HOME/.oh-my-zsh/custom/themes/geometry.zsh-theme
 
 # Symlink tmux directory
 ln -s $dir/.tmux $HOME/.tmux
