@@ -6,7 +6,6 @@
 PROMPT_SYMBOL='▲'
 EXIT_VALUE_SYMBOL="%{$fg_bold[magenta]%}△ Oh fuck! %{$reset_color%}"
 RPROMPT_SYMBOL='◇'
-RSEP = '|'
 
 GIT_DIRTY="%{$fg[red]%}⬡%{$reset_color%}"
 GIT_CLEAN="%{$fg[green]%}⬢%{$reset_color%}"
@@ -15,8 +14,8 @@ GIT_UNPULLED="⇣"
 GIT_UNPUSHED="⇡"
 
 ZSH_THEME_GIT_TIME_SINCE_COMMIT_SHORT="%{$fg[green]%}"
-ZSH_THEME_GIT_TIME_SINCE_COMMIT_NEUTRAL="%{$fg[white]%}"
-ZSH_THEME_GIT_TIME_SINCE_COMMIT_LONG="%{$fg[cyan]%}"
+ZSH_THEME_GIT_TIME_SINCE_COMMIT_NEUTRAL="%{$fg[yellow]%}"
+ZSH_THEME_GIT_TIME_SINCE_COMMIT_LONG="%{$fg[red]%}"
 
 _git_time_since_commit() {
   if [[ $(git log 2>&1 > /dev/null | grep -c "^fatal: bad default revision") == 0 ]]; then
@@ -93,7 +92,7 @@ _git_symbol() {
 
 _git_info() {
   if git rev-parse --git-dir > /dev/null 2>&1; then
-    echo "$(_git_symbol)%F{242}$(_git_branch)%{$reset_color%} $RSEP $(_git_time_since_commit) $RSEP $(_git_dirty)"
+    echo "$(_git_symbol) %F{white}$(_git_branch)%{$reset_color%} | $(_git_time_since_commit) | $(_git_dirty)"
   fi
 }
 
@@ -121,7 +120,7 @@ geometry_prompt() {
 
   NEWLINE=$'\n'
   PROMPT="
- %(?.$PROMPT_SYMBOL.$EXIT_VALUE_SYMBOL) %{$fg_bold[white]%}%3~ %{$reset_color%} ${NEWLINE} 👉▷ "
+ %(?.$PROMPT_SYMBOL.$EXIT_VALUE_SYMBOL) %{$fg_bold[white]%}%3~ %{$reset_color%} ${NEWLINE} ▷ "
 
 
   PROMPT2=' $RPROMPT_SYMBOL '
