@@ -1,18 +1,14 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/spencerdixon/.oh-my-zsh
 
-# RVM Path
-export GEM_HOME=$HOME/.gem
-export GEM_PATH=$HOME/.gem
 # Set CLICOLOR if you want Ansi Colors in iTerm2
 export CLICOLOR=1
-#
+
 # # Set colors to match iTerm2 Terminal Colors
 export TERM=xterm-256color
 
  #Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-
 export PATH="/usr/local/sbin:$PATH"
 
 # Base16 Shell
