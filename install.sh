@@ -8,7 +8,7 @@
 
 dir=$HOME/dotfiles                            # dotfiles directory
 olddir=$HOME/dotfiles_old                     # old dotfiles backup directory
-files=".vimrc .tmux.conf .zshrc"              # list of files to symlink in homedir
+files=".vimrc .tmux.conf .zshrc .gitignore_global"              # list of files to symlink in homedir
 
 ##########
 
@@ -24,23 +24,20 @@ echo "...done!"
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
 for file in $files; do
-    echo "Moving any existing dotfiles from ~ to $olddir"
-    mv ~/$file ~/dotfiles_old/
-    echo "Creating symlink to $file in home directory."
-    ln  -s $dir/$file $HOME/$file
+  echo "Moving any existing dotfiles from ~ to $olddir"
+  mv ~/$file ~/dotfiles_old/
+
+  echo "Creating symlink to $file in home directory."
+  ln  -s $dir/$file $HOME/$file
 done
 
-# Move geometry
-
+# Symlink geometry (zsh theme)
 cd ~
 mkdir -p .oh-my-zsh/custom/themes
-ln -s $dir/geometry.zsh-theme $HOME/.oh-my-zsh/custom/themes/geometry.zsh-theme
+ln -s $dir/.oh-my-zsh/custom/themes/geometry.zsh-theme $HOME/.oh-my-zsh/custom/themes/geometry.zsh-theme
 
 # Symlink tmux directory
 ln -s $dir/.tmux $HOME/.tmux
-
-# Symlink the global gitignore
-ln -s $dir/.gitignore_global $HOME/.gitignore_global
 
 # Set global gitignore
 git config --global core.excludesfile ~/.gitignore_global
