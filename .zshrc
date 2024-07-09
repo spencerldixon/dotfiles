@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/spencerdixon/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set CLICOLOR if you want Ansi Colors in iTerm2
 export CLICOLOR=1
@@ -10,13 +10,6 @@ export TERM=xterm-256color
  #Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-
-# Base16 Shell
-#BASE16_SHELL="$HOME/.config/base16-shell/base16-eighties.dark.sh"
-#[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
-
-#Gruvbox
-#source "$HOME/dotfiles/vim/bundle/gruvbox/gruvbox_256palette_osx.sh"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -62,7 +55,7 @@ COMPLETION_WAITING_DOTS="true"
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="dd.mm.yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -71,11 +64,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git bundler osx rake ruby)
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
+plugins=(git bundler macos rake ruby docker docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -83,11 +72,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -101,9 +90,7 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Settings for SCM Breeze shortcuts
-# [ -s "/Users/spencerdixon/.scm_breeze/scm_breeze.sh" ] && source "/Users/spencerdixon/.scm_breeze/scm_breeze.sh"
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
-#
 
 # Colorize icons in ls with - https://github.com/athityakumar/colorls
 # lc () { ruby ~/bin/colorls/colorls.rb $1; }
@@ -114,19 +101,16 @@ source $ZSH/oh-my-zsh.sh
  alias c="clear"
  alias v="vim"
  alias fucking="sudo"
- alias zshconfig="v ~/.zshrc && . ~/.zshrc"
+ alias zshconfig="v ~/dotfiles/.zshrc && . ~/dotfiles/.zshrc"
  alias zshrc="zshconfig"
  alias vimrc="v ~/dotfiles/.vimrc"
+ alias dotfiles_install="cd ~/dotfiles && ./install.sh"
  alias babushkadeps="v ~/.babushka/sources/spencerldixon"
  alias dotfiles="v ~/dotfiles"
  alias tmuxreload="tmux source-file ~/.tmux.conf"
  alias tmuxconfig="v ~/dotfiles/.tmux.conf && tmuxreload"
  alias ohmyzsh="v ~/.oh-my-zsh"
  alias be="bundle exec"
- alias bundaru="bundle"
- alias upadataru="update"
- alias instaru="install"
- alias railsu="rails"
  alias sideconf="bundle exec sidekiq -C config/sidekiq.yml"
  alias clean_merged="git branch --merged | grep -v '\*' | xargs -n 1 git branch -d"
  alias fuck='$(thefuck $(fc -ln -1))'
@@ -138,12 +122,9 @@ source $ZSH/oh-my-zsh.sh
  alias ta="tmux attach -t"
  alias td="tmux detach"
  alias tns="TMUX= tmux new-session -d -s"
- alias py="python"
  alias smlist='spoof-mac.py list --wifi'
  alias smrandom='sudo spoof-mac.py randomize wi-fi; echo "Mac address spoofed!"; spoof-mac.py list --wifi'
- alias theme='v ~/.oh-my-zsh/custom/themes/geometry.zsh-theme'
- alias newpost='./initpost.sh -c'
- alias firefox='open /Applications/Firefox.app'
+ alias theme='v ~/dotfiles/.oh-my-zsh/custom/themes/geometry.zsh-theme'
  alias ngrok='~/Rails/./ngrok http'
  alias gclean="git branch --merged origin/main | grep -v '\\*\\|main\\|develop' | xargs -n 1 git branch -d"
  alias ciaclean='gclean'
@@ -151,20 +132,3 @@ source $ZSH/oh-my-zsh.sh
  alias lc='lc -r'
  alias findrails='lsof -wni tcp:3000'
  alias killrails='kill -9 '
-
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-
-export PATH="/Users/spencerdixon/anaconda/bin:$PATH"
-
-export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin"
-export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
-
-export PATH="${HOMEBREW_PREFIX}/opt/postgresql@12/bin:$PATH"
-export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/postgresql@12/lib"
-export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/postgresql@12/include"
-export PKG_CONFIG_PATH="${HOMEBREW_PREFIX}/opt/postgresql@12/lib/pkgconfig"
-
