@@ -1,16 +1,10 @@
 # Dotfiles
 
-My split window vim, and iterm2 setup for Ruby on Rails development
+My vim, and iterm2 setup for Ruby on Rails development
+
+I've since switched to Neovim and keep the config in [https://github.com/spencerldixon/kickstart.nvim](https://github.com/spencerldixon/kickstart.nvim) but it's useful to have the old vim config too. I may move that repo in here in future.
 
 ## Installation
-
-Install Vundle to manage vim plugins:
-
-`git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
-
-To install plugins, run this from the command line:
-
-`vim +PluginInstall +qall`
 
 Run these commands from your command line to use the install script:
 
@@ -24,11 +18,7 @@ chmod +x install.sh
 
 Run `tmux prefix (Ctrl + A) + I` to install tmux plugins
 
-Set the iTerm colour scheme to Hybrid.
-
-## Fonts
-
-Select the included patched Menlo for Powerline font from the `/fonts` directory, install it, and then select it as the terminal font
+Set the iTerm colour scheme to Tokyo Night Dark.
 
 ## Vim Mappings
 
@@ -59,5 +49,5 @@ It's just git! Pull and push as you would normally. You will need to run the ins
 
 For some problems I've come across during installation, these might help...
 
-https://help.github.com/articles/changing-a-remote-s-url/
-https://help.github.com/articles/generating-ssh-keys/
+- [https://help.github.com/articles/changing-a-remote-s-url/](https://help.github.com/articles/changing-a-remote-s-url/)
+- [https://help.github.com/articles/generating-ssh-keys/](https://help.github.com/articles/generating-ssh-keys/)
