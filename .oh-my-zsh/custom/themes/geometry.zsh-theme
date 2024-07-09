@@ -4,8 +4,9 @@
 # pure: https://github.com/sindresorhus/pure
 
 PROMPT_SYMBOL='▲'
-EXIT_VALUE_SYMBOL="%{$fg_bold[magenta]%}△ Oh fuck! %F{$reset_color}"
+EXIT_VALUE_SYMBOL="%{$fg_bold[magenta]%}△ Oh fuck! %{$reset_color%}"
 RPROMPT_SYMBOL='◇'
+RSEP = '|'
 
 GIT_DIRTY="%{$fg[red]%}⬡%{$reset_color%}"
 GIT_CLEAN="%{$fg[green]%}⬢%{$reset_color%}"
@@ -92,7 +93,7 @@ _git_symbol() {
 
 _git_info() {
   if git rev-parse --git-dir > /dev/null 2>&1; then
-    echo "$(_git_symbol)%F{242}$(_git_branch)%{$reset_color%} :: $(_git_time_since_commit) :: $(_git_dirty)"
+    echo "$(_git_symbol)%F{242}$(_git_branch)%{$reset_color%} $RSEP $(_git_time_since_commit) $RSEP $(_git_dirty)"
   fi
 }
 
@@ -119,7 +120,8 @@ geometry_prompt() {
   add-zsh-hook precmd   _set_title
 
   NEWLINE=$'\n'
-  PROMPT="%(?.$PROMPT_SYMBOL.$EXIT_VALUE_SYMBOL) %{$fg_bold[white]%}%3~ %F{$reset_color} ${NEWLINE} ▷ "
+  PROMPT="
+ %(?.$PROMPT_SYMBOL.$EXIT_VALUE_SYMBOL) %{$fg_bold[white]%}%3~ %{$reset_color%} ${NEWLINE} 👉▷ "
 
 
   PROMPT2=' $RPROMPT_SYMBOL '
