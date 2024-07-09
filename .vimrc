@@ -1,32 +1,29 @@
-" RUNTIME (set the runtime path to include Vundle and initialize)
-
-set rtp+=~/.vim/bundle/Vundle.vim
-
 " PLUGINS (Put all plugins in here)
 
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'scrooloose/nerdtree.git'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'junegunn/goyo.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-rails'
-Plugin 'ap/vim-css-color'
-Plugin 'mattn/emmet-vim'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'alexbel/vim-rubygems'
-Plugin 'mtscout6/vim-cjsx'
-Plugin 'w0ng/vim-hybrid'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'junegunn/limelight.vim'
-Plugin 'prettier/vim-prettier'
-Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plugin 'junegunn/fzf.vim'
-Plugin 'mattn/webapi-vim'
-call vundle#end()
+call plug#begin()
+Plug 'gmarik/Vundle.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'junegunn/goyo.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-rails'
+Plug 'ap/vim-css-color'
+Plug 'mattn/emmet-vim'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'elixir-lang/vim-elixir'
+Plug 'alexbel/vim-rubygems'
+Plug 'mtscout6/vim-cjsx'
+Plug 'w0ng/vim-hybrid'
+Plug 'vim-syntastic/syntastic'
+Plug 'junegunn/limelight.vim'
+Plug 'prettier/vim-prettier'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'mattn/webapi-vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}  " Conquer on completion
+call plug#end()
 
 " ESSENTIALS AND DEFAULTS (Color Scheme, Tab Spacing, etc.)
 
