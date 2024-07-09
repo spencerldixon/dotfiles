@@ -36,10 +36,8 @@ cd ~
 mkdir -p .oh-my-zsh/custom/themes
 ln -s $dir/geometry.zsh-theme $HOME/.oh-my-zsh/custom/themes/geometry.zsh-theme
 
-# Copy tmux files
-
-cd ~
-cp -R $dir/.tmux $HOME/
+# Symlink tmux directory
+ln -s $dir/.tmux $HOME/.tmux
 
 # Symlink the global gitignore
 ln -s $dir/.gitignore_global $HOME/.gitignore_global
