@@ -4,7 +4,7 @@
 # pure: https://github.com/sindresorhus/pure
 
 PROMPT_SYMBOL='▲'
-EXIT_VALUE_SYMBOL="%{$fg_bold[magenta]%}△ Oh fuck! %{$reset_color%}"
+EXIT_VALUE_SYMBOL="%{$fg_bold[magenta]%}△ Oh fuck! %F{$reset_color}"
 RPROMPT_SYMBOL='◇'
 
 GIT_DIRTY="%{$fg[red]%}⬡%{$reset_color%}"
@@ -119,8 +119,7 @@ geometry_prompt() {
   add-zsh-hook precmd   _set_title
 
   NEWLINE=$'\n'
-  PROMPT='
- %(?.$PROMPT_SYMBOL.$EXIT_VALUE_SYMBOL) %{$fg_bold[white]%}%3~%{$reset_color%} ${NEWLINE} ▷ '
+  PROMPT="%(?.$PROMPT_SYMBOL.$EXIT_VALUE_SYMBOL) %{$fg_bold[white]%}%3~ %F{$reset_color} ${NEWLINE} ▷ "
 
 
   PROMPT2=' $RPROMPT_SYMBOL '
