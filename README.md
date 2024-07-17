@@ -30,6 +30,8 @@ stow .
 - Run `tmux prefix (Ctrl + A) + I` to install tmux plugins
 - Set the iTerm colour scheme to Tokyo Night Dark.
 
+You might need to run `source ~/.zshrc` to reload zsh
+
 ## Gitignore
 
 You can set the global gitignore with:
