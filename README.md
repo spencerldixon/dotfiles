@@ -1,6 +1,6 @@
-# Dotfiles
+# 🔴 Dotfiles
 
-Dotfile setup for the following
+My dotfiles setup using gnu stow for the following
 
 - Neovim
 - Vim
@@ -22,7 +22,7 @@ brew install stow
 cd ~
 git clone git://github.com/spencerldixon/dotfiles.git
 cd ~/dotfiles
-stow .
+stow git iterm2 nvim oh_my_zsh tmux vim zellij zsh
 ```
 
 ## Post-Installation
