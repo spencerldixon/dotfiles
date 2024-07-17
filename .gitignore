@@ -3,7 +3,6 @@
 .tmux/plugins/*
 .vim/bundle/*
 .vim/colors/*
-vim/*
 *.swp
 *.swo
 *.swn

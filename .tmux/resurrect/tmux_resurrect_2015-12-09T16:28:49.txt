@@ -1,9 +1,0 @@
-pane	0	0	:v	1	:*	0	:/Users/spencerdixon/Rails/online_reporting_tool/app/views/users	1	vim	:/usr/local/bin/vim
-pane	0	1	:rs	0	:-	0	:/Users/spencerdixon/Rails/online_reporting_tool	1	ruby	:/Users/spencerdixon/.rvm/rubies/ruby-2.2.3/bin/ruby script/rails s
-pane	0	2	:redis-server	0	: 	0	:/Users/spencerdixon/Rails/online_reporting_tool	1	redis-server	:redis-server *:6379
-pane	0	3	:sideconf	0	: 	0	:/Users/spencerdixon/Rails/online_reporting_tool	1	ruby	:sidekiq 3.3.4 online_reporting_tool [0 of 25 busy]    
-window	0	0	1	:*	c29d,204x55,0,0,0
-window	0	1	0	:-	c29e,204x55,0,0,1
-window	0	2	0	: 	c29f,204x55,0,0,2
-window	0	3	0	: 	c2a1,204x55,0,0,4
-state	0	
