@@ -177,6 +177,9 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_coffee_checkers = ['coffeelint']
 let g:syntastic_python_checkers = ['python']
 
+" Node path for coc
+let g:coc_node_path = "$HOME/.local/share/mise/installs/node/latest/bin/node"
+
 " RUN PRETTIER ON SAVE
 
 " nmap <Leader>py <Plug>(Prettier)
