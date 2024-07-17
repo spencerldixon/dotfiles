@@ -1,12 +1,11 @@
-.tmux/resurrect/*
-.tmux/resurrect/last
-.tmux/plugins/*
-.vim/bundle/*
-.vim/colors/*
-vim/*
+tmux/.tmux/resurrect/*
+tmux/.tmux/resurrect/last
+tmux/.tmux/plugins/*
+
 *.swp
 *.swo
 *.swn
 *.un~
+
 .DS_Store
 .DS_Store?

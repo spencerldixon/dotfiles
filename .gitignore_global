@@ -1,9 +1,0 @@
-# VIM
-*.swp
-*.swo
-*.swn
-*.un~
-
-# OS X
-.DS_Store
-.DS_Store?
