@@ -9,9 +9,6 @@ return {
     require("nvim-tree").setup {
       filters = {
         dotfiles = false,
-        custom = {
-          '*.un~'
-        },
       },
       disable_netrw = true,
       hijack_netrw = true,

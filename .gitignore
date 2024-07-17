@@ -1,6 +1,7 @@
 tmux/.tmux/resurrect/*
 tmux/.tmux/resurrect/last
 tmux/.tmux/plugins/*
+iterm2/.config/iterm2/AppSupport
 
 *.swp
 *.swo

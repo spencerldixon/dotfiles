@@ -21,7 +21,7 @@ brew install stow
 ```
 cd ~
 git clone git://github.com/spencerldixon/dotfiles.git
-git pull --recurse-submodules
+git submodule update --init --recursive
 cd ~/dotfiles
 stow git iterm2 nvim oh_my_zsh tmux vim zellij zsh
 ```
