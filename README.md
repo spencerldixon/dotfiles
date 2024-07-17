@@ -21,6 +21,7 @@ brew install stow
 ```
 cd ~
 git clone git://github.com/spencerldixon/dotfiles.git
+git pull --recurse-submodules
 cd ~/dotfiles
 stow git iterm2 nvim oh_my_zsh tmux vim zellij zsh
 ```
@@ -28,7 +29,7 @@ stow git iterm2 nvim oh_my_zsh tmux vim zellij zsh
 ## Post-Installation
 
 - Run `tmux prefix (Ctrl + A) + I` to install tmux plugins
-- Set the iTerm colour scheme to Tokyo Night Dark.
+- Set the iTerm colour scheme to Tokyo Night Dark and font to MesloLGL nerd font.
 
 You might need to run `source ~/.zshrc` to reload zsh
 
