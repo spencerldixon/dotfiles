@@ -101,30 +101,26 @@ fi
  alias c="clear"
  alias v="vim"
  alias fucking="sudo"
- alias zshconfig="v ~/dotfiles/.zshrc && . ~/dotfiles/.zshrc"
+ alias zshconfig="v ~/dotfiles/zsh/.zshrc && . ~/dotfiles/zsh/.zshrc"
  alias zshrc="zshconfig"
- alias vimrc="v ~/dotfiles/.vimrc"
- alias dotfiles_install="cd ~/dotfiles && ./install.sh"
+ alias vimrc="v ~/dotfiles/vim/.vimrc"
  alias babushkadeps="v ~/.babushka/sources/spencerldixon"
  alias dotfiles="v ~/dotfiles"
  alias tmuxreload="tmux source-file ~/.tmux.conf"
- alias tmuxconfig="v ~/dotfiles/.tmux.conf && tmuxreload"
- alias ohmyzsh="v ~/.oh-my-zsh"
- alias be="bundle exec"
+ alias tmuxconfig="v ~/dotfiles/tmux/.tmux.conf && tmuxreload"
  alias sideconf="bundle exec sidekiq -C config/sidekiq.yml"
  alias clean_merged="git branch --merged | grep -v '\*' | xargs -n 1 git branch -d"
  alias fuck='$(thefuck $(fc -ln -1))'
  alias FUCK='fuck'
- alias babs="babushka"
  alias ls="ls -GF"
  alias t="tmux"
  alias ts="tmux list-sessions"
  alias ta="tmux attach -t"
  alias td="tmux detach"
- alias tns="TMUX= tmux new-session -d -s"
+ alias tns="TMUX=tmux new-session -d -s"
  alias smlist='spoof-mac.py list --wifi'
  alias smrandom='sudo spoof-mac.py randomize wi-fi; echo "Mac address spoofed!"; spoof-mac.py list --wifi'
- alias theme='v ~/dotfiles/.oh-my-zsh/custom/themes/geometry.zsh-theme'
+ alias theme='v ~/dotfiles/oh_my_zsh/.oh-my-zsh/custom/themes/geometry.zsh-theme'
  alias ngrok='~/Rails/./ngrok http'
  alias gclean="git branch --merged origin/main | grep -v '\\*\\|main\\|develop' | xargs -n 1 git branch -d"
  alias ciaclean='gclean'

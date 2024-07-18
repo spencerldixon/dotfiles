@@ -60,7 +60,7 @@ set clipboard=unnamed
 
 " set background=dark
 colorscheme hybrid
-set guifont=Menlo\ For\ Powerline
+set guifont=MesloLGL\ Nerd\ Font\ Mono
 let g:hybrid_custom_term_colors = 1
 
 
@@ -105,7 +105,7 @@ nnoremap <tab> <C-w>w
 
 " NERDTREE CONFIG
 
-map <C-n> :NERDTreeToggle<CR>
+map <leader>e :NERDTreeToggle<CR>
 let g:NERDTreeWinSize=38
 let NERDTreeShowHidden=1
 map <leader>r :NERDTreeFind<CR>
