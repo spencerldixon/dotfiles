@@ -1,6 +1,39 @@
+LSEP ""
+RSEP ""
+
 layout {
   pane size=1 borderless=true {
-    plugin location="zellij:compact-bar"
+    plugin location="file:~/dotfiles/zellij/.config/zellij/plugins/zjstatus.wasm" {
+      format_left   "#[bg=bright_black,fg=white,bold]{session}  {tabs}"
+      format_right  "{command_spotify} {datetime}"
+      format_space  ""
+
+      border_enabled  "false"
+      border_char     "─"
+      border_format   "#[fg=#6C7086]{char}"
+      border_position "top"
+
+      hide_frame_for_single_pane "true"
+
+      mode_normal  "#[bg=blue] "
+      mode_tmux    "#[bg=#ffc387] "
+
+      tab_normal   "#[bg=bright_black,fg=white] {name} "
+      tab_active   "#[bg=white,fg=black,bold] {name} "
+
+      command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
+      command_git_branch_format      "#[fg=black,bg=blue] {stdout} "
+      command_git_branch_interval    "10"
+      command_git_branch_rendermode  "static"
+
+      command_spotify_command  "sh -c \"osascript ~/dotfiles/tmux/.tmux/current_track.scpt\""
+      command_spotify_format   "#[fg=green,bg=black] {exit_code} {stdout} {stderr}"
+      command_spotify_interval "3"
+
+      datetime        "#[fg=bright_black]#[fg=bright_white,bg=bright_black] {format} "
+      datetime_format "%d/%m/%y | %H:%M"
+      datetime_timezone "Europe/London"
+    }
   }
 
   pane {
