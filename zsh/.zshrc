@@ -100,6 +100,7 @@ fi
  alias rc="rails c"
  alias c="clear"
  alias v="vim"
+ alias n="nvim"
  alias fucking="sudo"
  alias zshconfig="v ~/dotfiles/zsh/.zshrc && . ~/dotfiles/zsh/.zshrc"
  alias zshrc="zshconfig"
@@ -128,3 +129,5 @@ fi
  alias lc='lc -r'
  alias findrails='lsof -wni tcp:3000'
  alias killrails='kill -9 '
+
+eval "$(~/.local/bin/mise activate zsh)"
