@@ -118,7 +118,7 @@ fi
  alias ts="tmux list-sessions"
  alias ta="tmux attach -t"
  alias td="tmux detach"
- alias tns="TMUX=tmux new-session -d -s"
+ alias tns="tmux new -d -s"
  alias smlist='spoof-mac.py list --wifi'
  alias smrandom='sudo spoof-mac.py randomize wi-fi; echo "Mac address spoofed!"; spoof-mac.py list --wifi'
  alias theme='v ~/dotfiles/oh_my_zsh/.oh-my-zsh/custom/themes/geometry.zsh-theme'
