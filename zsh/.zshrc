@@ -11,6 +11,9 @@ export TERM=xterm-256color
 export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
+# THOR_MERGE for rails updates
+export THOR_MERGE="nvim -n -d $1 $2 $3"
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -114,11 +117,19 @@ fi
  alias fuck='$(thefuck $(fc -ln -1))'
  alias FUCK='fuck'
  alias ls="ls -GF"
+
+ # Tmux aliases
  alias t="tmux"
  alias ts="tmux list-sessions"
  alias ta="tmux attach -t"
  alias td="tmux detach"
+<<<<<<< HEAD
  alias tns="tmux new -d -s"
+=======
+ alias tns="tmux new-session -d -s"
+ alias tpu="tmux popup -E"
+
+>>>>>>> c7660a5 (Add ghostty config)
  alias smlist='spoof-mac.py list --wifi'
  alias smrandom='sudo spoof-mac.py randomize wi-fi; echo "Mac address spoofed!"; spoof-mac.py list --wifi'
  alias theme='v ~/dotfiles/oh_my_zsh/.oh-my-zsh/custom/themes/geometry.zsh-theme'
@@ -129,5 +140,13 @@ fi
  alias lc='lc -r'
  alias findrails='lsof -wni tcp:3000'
  alias killrails='kill -9 '
+ alias nvimdiff='nvim -d "$LOCAL" "$MERGED" "$REMOTE" -c "wincmd H | wincmd ="'
+
+# bun completions
+[ -s "/Users/spencerdixon/.bun/_bun" ] && source "/Users/spencerdixon/.bun/_bun"
 
 eval "$(~/.local/bin/mise activate zsh)"
+
+export PATH="/opt/homebrew/opt/icu4c@77/bin:$PATH"
+export PATH="/opt/homebrew/opt/icu4c@77/sbin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"

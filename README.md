@@ -8,6 +8,7 @@ My dotfiles setup using gnu stow for the following
 - Zellij
 - Zsh
 - Oh my zsh
+- Ghostty
 - .gitignore (global)
 
 ## Installation
@@ -23,7 +24,7 @@ cd ~
 git clone git://github.com/spencerldixon/dotfiles.git
 git submodule update --init --recursive
 cd ~/dotfiles
-stow git iterm2 nvim oh_my_zsh tmux vim zellij zsh
+stow git iterm2 nvim oh_my_zsh tmux vim zellij zsh ghostty
 ```
 
 ## Post-Installation

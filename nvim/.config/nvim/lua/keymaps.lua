@@ -64,6 +64,7 @@ map('n', '<leader>fg', builtin.live_grep, { desc = '[F]ind [G]rep' })
 map('n', '<leader>fb', builtin.buffers, { desc = '[F]ind [B]uffers' })
 map('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp tags' })
 map('n', '<leader>.', builtin.current_buffer_fuzzy_find, { desc = '[F]ind in current buffer' })
+map('n', '<leader>r.', function() builtin.live_grep { search_dirs = { vim.fn.expand("%:p") } } end ) -- Regex search current file
 
 -- Navigate between buffers with Shift+h or Shift+l and <leader>bd to delete the buffer
 map('n', '<S-h>', '<cmd>bprev<CR>', { desc = 'Navigate left to previous buffer' })
@@ -76,6 +77,11 @@ map('n', '<CR>', 'G', { desc = 'Navigate to bottom of file' })
 
 -- Quick save with <leader>w
 map('n', '<leader>w', '<cmd>w<CR>', { desc = '[w]rite buffer' })
+
+-- merge tool
+vim.keymap.set("n", "<leader>1", ":diffget 1<CR>")
+vim.keymap.set("n", "<leader>3", ":diffget 3<CR>")
+
 
 -- vim: ts=2 sts=2 sw=2 et
 
