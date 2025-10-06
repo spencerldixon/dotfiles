@@ -123,13 +123,8 @@ fi
  alias ts="tmux list-sessions"
  alias ta="tmux attach -t"
  alias td="tmux detach"
-<<<<<<< HEAD
- alias tns="tmux new -d -s"
-=======
  alias tns="tmux new-session -d -s"
  alias tpu="tmux popup -E"
-
->>>>>>> c7660a5 (Add ghostty config)
  alias smlist='spoof-mac.py list --wifi'
  alias smrandom='sudo spoof-mac.py randomize wi-fi; echo "Mac address spoofed!"; spoof-mac.py list --wifi'
  alias theme='v ~/dotfiles/oh_my_zsh/.oh-my-zsh/custom/themes/geometry.zsh-theme'
@@ -146,7 +141,3 @@ fi
 [ -s "/Users/spencerdixon/.bun/_bun" ] && source "/Users/spencerdixon/.bun/_bun"
 
 eval "$(~/.local/bin/mise activate zsh)"
-
-export PATH="/opt/homebrew/opt/icu4c@77/bin:$PATH"
-export PATH="/opt/homebrew/opt/icu4c@77/sbin:$PATH"
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
