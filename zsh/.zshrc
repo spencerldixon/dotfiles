@@ -105,13 +105,13 @@ fi
  alias v="vim"
  alias n="nvim"
  alias fucking="sudo"
- alias zshconfig="v ~/dotfiles/zsh/.zshrc && . ~/dotfiles/zsh/.zshrc"
+ alias zshconfig="n ~/dotfiles/zsh/.zshrc && . ~/dotfiles/zsh/.zshrc"
  alias zshrc="zshconfig"
- alias vimrc="v ~/dotfiles/vim/.vimrc"
- alias babushkadeps="v ~/.babushka/sources/spencerldixon"
- alias dotfiles="v ~/dotfiles"
+ alias vimrc="n ~/dotfiles/vim/.vimrc"
+ alias babushkadeps="n ~/.babushka/sources/spencerldixon"
+ alias dotfiles="n ~/dotfiles"
  alias tmuxreload="tmux source-file ~/.tmux.conf"
- alias tmuxconfig="v ~/dotfiles/tmux/.tmux.conf && tmuxreload"
+ alias tmuxconfig="n ~/dotfiles/tmux/.tmux.conf && tmuxreload"
  alias sideconf="bundle exec sidekiq -C config/sidekiq.yml"
  alias clean_merged="git branch --merged | grep -v '\*' | xargs -n 1 git branch -d"
  alias fuck='$(thefuck $(fc -ln -1))'
@@ -125,9 +125,10 @@ fi
  alias td="tmux detach"
  alias tns="tmux new-session -d -s"
  alias tpu="tmux popup -E"
+
  alias smlist='spoof-mac.py list --wifi'
  alias smrandom='sudo spoof-mac.py randomize wi-fi; echo "Mac address spoofed!"; spoof-mac.py list --wifi'
- alias theme='v ~/dotfiles/oh_my_zsh/.oh-my-zsh/custom/themes/geometry.zsh-theme'
+ alias theme='n ~/dotfiles/oh_my_zsh/.oh-my-zsh/custom/themes/geometry.zsh-theme'
  alias ngrok='~/Rails/./ngrok http'
  alias gclean="git branch --merged origin/main | grep -v '\\*\\|main\\|develop' | xargs -n 1 git branch -d"
  alias ciaclean='gclean'
@@ -137,7 +138,11 @@ fi
  alias killrails='kill -9 '
  alias nvimdiff='nvim -d "$LOCAL" "$MERGED" "$REMOTE" -c "wincmd H | wincmd ="'
 
+ # Python
+ alias pm='python manage.py'
+
 # bun completions
 [ -s "/Users/spencerdixon/.bun/_bun" ] && source "/Users/spencerdixon/.bun/_bun"
 
+# Activate mise
 eval "$(~/.local/bin/mise activate zsh)"

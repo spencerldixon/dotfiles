@@ -7,3 +7,6 @@ window-padding-y = 15
 theme = TokyoNight Night
 cursor-invert-fg-bg = true
 font-size = 14
+shell-integration = zsh
+working-directory = home
+window-inherit-working-directory = true
