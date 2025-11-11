@@ -14,6 +14,9 @@ export PATH="/usr/local/sbin:$PATH"
 # THOR_MERGE for rails updates
 export THOR_MERGE="nvim -n -d $1 $2 $3"
 
+# Disable venv above prompt (add this to theme instead)
+# export VIRTUAL_ENV_DISABLE_PROMPT=1
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -146,3 +149,6 @@ fi
 
 # Activate mise
 eval "$(~/.local/bin/mise activate zsh)"
+
+# UV shell autocompletions
+eval "$(uv generate-shell-completion zsh)"
