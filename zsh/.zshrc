@@ -94,12 +94,15 @@ fi
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Settings for SCM Breeze shortcuts
-[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 
 # Colorize icons in ls with - https://github.com/athityakumar/colorls
 # lc () { ruby ~/bin/colorls/colorls.rb $1; }
+
+# Settings for SCM Breeze shortcuts
+[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
+
+# Fix scm breeze clashing with my C alias
+unset -f cd 2>/dev/null
 
 # Example aliases
  alias rs="rails s"
@@ -143,6 +146,7 @@ fi
 
  # Python
  alias pm='python manage.py'
+ alias uvpm='uv run manage.py'
 
 # bun completions
 [ -s "/Users/spencerdixon/.bun/_bun" ] && source "/Users/spencerdixon/.bun/_bun"
