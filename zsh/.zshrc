@@ -1,6 +1,8 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+export DISABLE_AUTO_TITLE='true'
+
 # Set CLICOLOR if you want Ansi Colors in iTerm2
 export CLICOLOR=1
 
@@ -105,48 +107,41 @@ fi
 unset -f cd 2>/dev/null
 
 # Example aliases
- alias rs="rails s"
- alias rc="rails c"
- alias c="clear"
- alias v="vim"
- alias n="nvim"
- alias fucking="sudo"
- alias zshconfig="n ~/dotfiles/zsh/.zshrc && . ~/dotfiles/zsh/.zshrc"
- alias zshrc="zshconfig"
- alias vimrc="n ~/dotfiles/vim/.vimrc"
- alias babushkadeps="n ~/.babushka/sources/spencerldixon"
- alias dotfiles="n ~/dotfiles"
- alias tmuxreload="tmux source-file ~/.tmux.conf"
- alias tmuxconfig="n ~/dotfiles/tmux/.tmux.conf && tmuxreload"
- alias sideconf="bundle exec sidekiq -C config/sidekiq.yml"
- alias clean_merged="git branch --merged | grep -v '\*' | xargs -n 1 git branch -d"
- alias fuck='$(thefuck $(fc -ln -1))'
- alias FUCK='fuck'
- alias ls="ls -GF"
+alias c="clear"
+alias v="vim"
+alias n="nvim"
+alias zshconfig="n ~/dotfiles/zsh/.zshrc && . ~/dotfiles/zsh/.zshrc"
+alias zshrc="zshconfig"
+alias vimrc="n ~/dotfiles/vim/.vimrc"
+alias dotfiles="n ~/dotfiles"
+alias tmuxreload="tmux source-file ~/.tmux.conf"
+alias tmuxconfig="n ~/dotfiles/tmux/.tmux.conf && tmuxreload"
+alias clean_merged="git branch --merged | grep -v '\*' | xargs -n 1 git branch -d"
+alias fuck='$(thefuck $(fc -ln -1))'
+alias FUCK='fuck'
+alias ls="ls -GF"
 
- # Tmux aliases
- alias t="tmux"
- alias ts="tmux list-sessions"
- alias ta="tmux attach -t"
- alias td="tmux detach"
- alias tns="tmux new-session -d -s"
- alias tpu="tmux popup -E"
+# Tmux aliases
+alias t="tmux"
+alias ts="tmux list-sessions"
+alias ta="tmux attach -t"
+alias td="tmux detach"
+alias tns="tmux new-session -d -s"
+alias tpu="tmux popup -E"
 
- alias smlist='spoof-mac.py list --wifi'
- alias smrandom='sudo spoof-mac.py randomize wi-fi; echo "Mac address spoofed!"; spoof-mac.py list --wifi'
- alias theme='n ~/dotfiles/oh_my_zsh/.oh-my-zsh/custom/themes/geometry.zsh-theme'
- alias ngrok='~/Rails/./ngrok http'
- alias gclean="git branch --merged origin/main | grep -v '\\*\\|main\\|develop' | xargs -n 1 git branch -d"
- alias ciaclean='gclean'
- alias flushdns='sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder'
- alias lc='lc -r'
- alias findrails='lsof -wni tcp:3000'
- alias killrails='kill -9 '
- alias nvimdiff='nvim -d "$LOCAL" "$MERGED" "$REMOTE" -c "wincmd H | wincmd ="'
+alias gclean='git branch --merged origin/main | grep -vE "^\s*(\*|main|develop)" | xargs -n 1 git branch -d'
+alias ciaclean='gclean'
+alias flushdns='sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder'
+alias lc='lc -r'
+alias findrails='lsof -wni tcp:3000'
+alias nvimdiff='nvim -d "$LOCAL" "$MERGED" "$REMOTE" -c "wincmd H | wincmd ="'
+alias killdocker="killall 'Docker Desktop' || true; pkill -9 -u "$(id -u)" -f 'com\.docker'"
 
- # Python
- alias pm='python manage.py'
- alias uvpm='uv run manage.py'
+# Python
+alias pm='python manage.py'
+alias uvpm='uv run manage.py'
+alias uvrm='uv run manage.py'
+alias uvr='uv run'
 
 # bun completions
 [ -s "/Users/spencerdixon/.bun/_bun" ] && source "/Users/spencerdixon/.bun/_bun"
@@ -156,3 +151,9 @@ eval "$(~/.local/bin/mise activate zsh)"
 
 # UV shell autocompletions
 eval "$(uv generate-shell-completion zsh)"
+
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/spencerdixon/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
