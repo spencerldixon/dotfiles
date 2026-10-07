@@ -157,3 +157,9 @@ fpath=(/Users/spencerdixon/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
+
+# Direnv hooks
+eval "$(direnv hook zsh)"
+
+# Hermes Agent command
+case ":$PATH:" in *":$HOME/.local/bin:"*) ;; *) export PATH="$HOME/.local/bin:$PATH" ;; esac

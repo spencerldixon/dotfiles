@@ -10,3 +10,15 @@ iterm2/.config/iterm2/AppSupport
 
 .DS_Store
 .DS_Store?
+
+# Pi credentials and local runtime data
+pi/.pi/agent/auth.json
+pi/.pi/agent/mcp-auth.json
+pi/.pi/agent/models-store.json
+pi/.pi/agent/sessions/
+pi/.pi/agent/bin/
+pi/.pi/agent/install/
+pi/.pi/agent/git/
+pi/.pi/agent/conductor/
+pi/.pi/agent/extensions/herdr-agent-state.ts
+pi/.pi/agent/*.log*

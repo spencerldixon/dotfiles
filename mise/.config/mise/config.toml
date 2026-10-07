@@ -2,7 +2,7 @@
 ruby = "latest"
 python = "latest"
 uv = "latest"
-terraform = "1.5.4"
+terraform = "latest"
 yarn = "1.22.22"
 
 [settings]

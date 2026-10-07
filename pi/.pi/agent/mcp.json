@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "atlassian": {
+      "url": "https://mcp.atlassian.com/v1/mcp",
+      "exposure": "deferred",
+      "description": "Search and read Jira tickets and Confluence pages"
+    }
+  }
+}
