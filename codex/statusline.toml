@@ -1,0 +1,3 @@
+# Merge into ~/.codex/config.toml under its existing [tui] table.
+[tui]
+status_line = ["context-used", "five-hour-limit", "weekly-limit"]

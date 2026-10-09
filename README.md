@@ -4,6 +4,8 @@ Personal configuration managed with [GNU Stow](https://www.gnu.org/software/stow
 
 See [CHEATSHEET.md](CHEATSHEET.md) for shell shortcuts, Git, Docker, tmux, and mise commands.
 
+See [codex/README.md](codex/README.md) for the Codex terminal status-bar configuration.
+
 | Package | Configuration |
 | --- | --- |
 | `claude` | Claude Code status line script |
