@@ -1,6 +1,6 @@
 # Command cheatsheet
 
-These commands match this repository's Zsh and tmux configuration. Open a new terminal after configuration changes, or reload with `source ~/.zshrc`.
+These commands match this repository's Zsh, Ghostty, and tmux configuration. Open a new terminal after shell configuration changes, or reload with `source ~/.zshrc`.
 
 ## Shell navigation and history
 
@@ -64,6 +64,20 @@ The enabled plugin uses `docker compose` when available, otherwise `docker-compo
 | `uvr pytest` | Run `uv run pytest`. |
 
 These aliases need the corresponding project files and tools installed.
+
+## Ghostty
+
+| Shortcut | Action |
+| --- | --- |
+| Cmd + backquote (\`) | Toggle the dropdown terminal from any app while Ghostty is running. |
+| `Cmd + Shift + E` | Open the entire scrollback in the macOS default text editor. |
+| `Cmd + Shift + ,` | Reload Ghostty configuration. |
+
+The dropdown appears at the top of the screen under the mouse and fills 45% of its height. It hides when focus moves to another window.
+
+Commands that run for at least 10 seconds send a desktop notification when they finish if their terminal is unfocused. This uses Ghostty's enabled Zsh shell integration.
+
+The background uses 94% opacity with blur, including tmux and Neovim cell backgrounds. The mouse pointer hides while typing. Restart Ghostty after changing background opacity on macOS.
 
 ## tmux
 

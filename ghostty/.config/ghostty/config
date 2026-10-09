@@ -10,3 +10,23 @@ font-size = 14
 shell-integration = zsh
 working-directory = home
 window-inherit-working-directory = true
+
+# Dropdown terminal from anywhere with Cmd+backquote.
+keybind = global:cmd+backquote=toggle_quick_terminal
+quick-terminal-position = top
+quick-terminal-size = 45%
+quick-terminal-screen = mouse
+
+# Notify when a command running for at least 10 seconds finishes unfocused.
+notify-on-command-finish = unfocused
+notify-on-command-finish-after = 10s
+notify-on-command-finish-action = notify,no-bell
+
+# Open the full scrollback in the default text editor.
+keybind = cmd+shift+e=write_scrollback_file:open
+
+# Subtle transparency, including tmux and Neovim backgrounds.
+background-opacity = 0.94
+background-blur = true
+background-opacity-cells = true
+mouse-hide-while-typing = true
