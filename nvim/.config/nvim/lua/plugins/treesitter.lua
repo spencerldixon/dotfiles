@@ -5,11 +5,15 @@ return {
     lazy = false,
     build = ':TSUpdate',
     config = function()
+      require('nvim-treesitter').setup {
+        install_dir = vim.fn.stdpath('data') .. '/site',
+      }
       local parsers = {
         'bash',
         'c',
         'css',
         'diff',
+        'gitignore',
         'html',
         'htmldjango',
         'javascript',

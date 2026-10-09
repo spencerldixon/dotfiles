@@ -3,14 +3,14 @@
 LSEP=
 RSEP=
 
-spotify_text_colour=magenta
+spotify_text_colour='#bb9af7'
 spotify_colour=default
 
-date_time_colour=brightblack
-date_time_text_colour=brightwhite
+date_time_colour='#24283b'
+date_time_text_colour='#a9b1d6'
 
 SPOTIFY="#[fg=${spotify_text_colour},bg=${spotify_colour}] $(osascript ~/.tmux/current_track.scpt)"
-DATE="#[fg=brightblack,bg=default]$LSEP#[fg=${date_time_text_colour},bg=${date_time_colour}] $(date +'%D')"
+DATE="#[fg=${date_time_colour},bg=default]$LSEP#[fg=${date_time_text_colour},bg=${date_time_colour}] $(date +'%D')"
 TIME="#[fg=${date_time_text_colour},bg=${date_time_colour}]#[fg=${date_time_text_colour},bg=${date_time_colour}] $(date +'%H:%M')"
 
-echo "$SPOTIFY" "$DATE | $TIME" | sed 's/ *$/ /g'
+echo "$SPOTIFY" "$DATE | $TIME #[default]" | sed 's/ *$/ /g'

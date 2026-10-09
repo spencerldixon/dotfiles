@@ -94,10 +94,22 @@ The prefix is `Ctrl + A`. For prefix shortcuts, press the prefix, release it, th
 | Prefix, `\|` | Split into side-by-side panes. |
 | Prefix, `-` | Split into stacked panes. |
 | Prefix, `h` / `j` / `k` / `l` | Move left / down / up / right between panes. |
+| Prefix, `p` | Open an 80% width/height popup shell in the current pane's directory; `exit` closes it. |
+| Prefix, `[` | Enter Vim-style copy mode; navigate with `h` / `j` / `k` / `l`, select with `v`, copy to the Mac clipboard with `y`, or cancel with Esc. |
+| Mouse drag | Select text and copy it to the Mac clipboard when released. |
+| Prefix, `1`–`9` | Switch windows; new sessions number windows and panes from 1. |
+| Prefix, `Ctrl + S` | Save the session layout manually with Resurrect. |
+| Prefix, `Ctrl + R` | Restore the saved layout manually with Resurrect. |
 | Prefix, `r` | Reload tmux configuration. |
 | Prefix, `Shift + I` | Install configured tmux plugins with TPM. |
 | `tmuxreload` | Reload tmux configuration from the shell. |
 | `tmuxconfig` | Edit tmux configuration, then reload it. |
+
+The status bar and pane borders match Ghostty's TokyoNight theme, retaining Spotify, battery, and clock information. Windows renumber when one closes.
+
+Continuum saves the session layout every 15 minutes and restores the latest snapshot when a new tmux server starts. Restoration recreates the saved layout and supported programs; it does not preserve running process memory. Reloading the configuration does not trigger restoration.
+
+Zsh preserves the terminal's `TERM`: normally `xterm-ghostty` in Ghostty and `tmux-256color` inside tmux. Open a fresh shell after removing the previous forced override; sourcing Zsh alone will not repair an already-overridden value.
 
 ## mise
 
