@@ -4,6 +4,7 @@ Personal configuration managed with [GNU Stow](https://www.gnu.org/software/stow
 
 | Package | Configuration |
 | --- | --- |
+| `claude` | Claude Code status line script |
 | `git` | Global Git ignore rules |
 | `ghostty` | Ghostty terminal |
 | `mise` | Development tool versions |
@@ -21,7 +22,7 @@ Install Stow, then clone this repository with its submodules:
 brew install stow
 git clone --recurse-submodules https://github.com/spencerldixon/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-stow --no-folding git ghostty mise nvim oh_my_zsh pi tmux zsh
+stow --no-folding claude git ghostty mise nvim oh_my_zsh pi tmux zsh
 ```
 
 Stow links files into your home directory. Install the applications separately, including Oh My Zsh if you use the shell configuration.
