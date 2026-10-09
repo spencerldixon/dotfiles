@@ -1,130 +1,67 @@
-# Geometry
-# Based on Avit and Pure
-# avit: https://github.com/robbyrussell/oh-my-zsh/blob/master/themes/avit.zsh-theme
-# pure: https://github.com/sindresorhus/pure
+# Minimal Geometry with SSH and AWS context only when explicitly active.
+# Read Git once per prompt; avoid history walks and optional index writes.
+_geometry_precmd() {
+  local git_status line branch oid ahead=0 behind=0 dirty=0 conflicted=0
+  local elapsed=0
+  local aws_profile=${AWS_PROFILE:-${AWS_DEFAULT_PROFILE:-}}
+  typeset -g _geometry_git='' _geometry_duration='' _geometry_ssh='' _geometry_aws=''
 
-PROMPT_SYMBOL='▲'
-EXIT_VALUE_SYMBOL="%{$fg_bold[magenta]%}△ Oh fuck! %{$reset_color%}"
-RPROMPT_SYMBOL='◇'
+  [[ -n ${SSH_CONNECTION:-}${SSH_CLIENT:-}${SSH_TTY:-} ]] && \
+    _geometry_ssh='%F{242}%m:%f'
+  [[ -n "$aws_profile" ]] && \
+    _geometry_aws="%F{242}aws:${aws_profile//\%/%%}%f"
 
-GIT_DIRTY="%{$fg[red]%}⬡%{$reset_color%}"
-GIT_CLEAN="%{$fg[green]%}⬢%{$reset_color%}"
-GIT_REBASE="\uE0A0"
-GIT_UNPULLED="⇣"
-GIT_UNPUSHED="⇡"
-
-ZSH_THEME_GIT_TIME_SINCE_COMMIT_SHORT="%{$fg[green]%}"
-ZSH_THEME_GIT_TIME_SINCE_COMMIT_NEUTRAL="%{$fg[yellow]%}"
-ZSH_THEME_GIT_TIME_SINCE_COMMIT_LONG="%{$fg[red]%}"
-
-_git_time_since_commit() {
-  if [[ $(git log 2>&1 > /dev/null | grep -c "^fatal: bad default revision") == 0 ]]; then
-    # Get the last commit.
-    last_commit=$(git log --pretty=format:'%at' -1 2> /dev/null)
-    now=$(date +%s)
-    seconds_since_last_commit=$((now-last_commit))
-
-    # Totals
-    minutes=$((seconds_since_last_commit / 60))
-    hours=$((seconds_since_last_commit/3600))
-
-    # Sub-hours and sub-minutes
-    days=$((seconds_since_last_commit / 86400))
-    sub_hours=$((hours % 24))
-    sub_minutes=$((minutes % 60))
-
-    if [ $hours -gt 24 ]; then
-      commit_age="${days}d"
-      color=$ZSH_THEME_GIT_TIME_SINCE_COMMIT_LONG
-    elif [ $minutes -gt 60 ]; then
-      commit_age="${sub_hours}h${sub_minutes}m"
-      color=$ZSH_THEME_GIT_TIME_SINCE_COMMIT_NEUTRAL
-    else
-      commit_age="${minutes}m"
-      color=$ZSH_THEME_GIT_TIME_SINCE_COMMIT_SHORT
-    fi
-    echo "$color$commit_age%{$reset_color%}"
+  if (( ${+_geometry_started} )); then
+    elapsed=$(( SECONDS - _geometry_started ))
+    unset _geometry_started
+    (( elapsed >= 3 )) && _geometry_duration=" %F{242}${elapsed}s%f"
   fi
-}
 
-_git_branch() {
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || \
-  ref=$(git rev-parse --short HEAD 2> /dev/null) || return
-  echo "${ref#refs/heads/}"
-}
+  git_status=$(GIT_OPTIONAL_LOCKS=0 command git status --porcelain=v2 --branch \
+    --untracked-files=normal --ignore-submodules 2>/dev/null) || return 0
 
-_git_dirty() {
-  if test -z "$(git status --porcelain --ignore-submodules)"; then
-    echo $GIT_CLEAN
+  for line in "${(@f)git_status}"; do
+    case "$line" in
+      '# branch.head '*) branch=${line#\# branch.head } ;;
+      '# branch.oid '*) oid=${line#\# branch.oid } ;;
+      '# branch.ab '*)
+        ahead=${${line#\# branch.ab +}%% *}
+        behind=${line##* -}
+        ;;
+      '# '*) ;;
+      'u '*) dirty=1; conflicted=1 ;;
+      *) dirty=1 ;;
+    esac
+  done
+
+  [[ "$branch" == '(detached)' ]] && branch="@${oid[1,7]}"
+  [[ -n "$branch" ]] || return 0
+  # Branch names may contain prompt escapes. Keep them literal.
+  _geometry_git="%F{white}${branch//\%/%%}%f"
+  if (( conflicted )); then
+    _geometry_git+=' %F{red}!%f'
+  elif (( dirty )); then
+    _geometry_git+=' %F{yellow}±%f'
   else
-    echo $GIT_DIRTY
+    _geometry_git+=' %F{green}✓%f'
   fi
+  (( ahead )) && _geometry_git+=" %F{cyan}↑${ahead}%f"
+  (( behind )) && _geometry_git+=" %F{cyan}↓${behind}%f"
+  return 0
 }
 
-_git_rebase_check() {
-  git_dir=$(git rev-parse --git-dir)
-  if test -d "$git_dir/rebase-merge" -o -d "$git_dir/rebase-apply"; then
-    echo "$GIT_REBASE"
-  fi
+_geometry_preexec() {
+  typeset -g _geometry_started=$SECONDS
 }
 
-_git_remote_check() {
-  local_commit=$(git rev-parse @ 2>&1)
-  remote_commit=$(git rev-parse @{u} 2>&1)
-  common_base=$(git merge-base @ @{u} 2>&1) # last common commit
+autoload -Uz add-zsh-hook
+# Remove the previous theme's hooks when reloading an existing shell.
+add-zsh-hook -d preexec _set_cmd_title
+add-zsh-hook -d precmd _set_title
+add-zsh-hook precmd _geometry_precmd
+add-zsh-hook preexec _geometry_preexec
 
-  if [[ $local_commit == $remote_commit ]]; then
-    echo ""
-  else
-    if [[ $common_base == $remote_commit ]]; then
-      echo "$GIT_UNPUSHED"
-    elif [[ $common_base == $local_commit ]]; then
-      echo "$GIT_UNPULLED"
-    else
-      echo "$GIT_UNPUSHED $GIT_UNPULLED"
-    fi
-  fi
-}
-
-_git_symbol() {
-  echo "$(_git_rebase_check) $(_git_remote_check) "
-}
-
-_git_info() {
-  if git rev-parse --git-dir > /dev/null 2>&1; then
-    echo "$(_git_symbol) %F{white}$(_git_branch)%{$reset_color%} | $(_git_time_since_commit) | $(_git_dirty)"
-  fi
-}
-
-_print_title() {
-  print -n '\e]0;'
-  print -Pn $1
-  print -n '\a'
-}
-
-# Show current command in title
-_set_cmd_title() {
-  _print_title "${2} @ %m"
-}
-
-# Prevent command showing on title after ending
-_set_title() {
-  _print_title '%~'
-}
-
-geometry_prompt() {
-  autoload -U add-zsh-hook
-
-  add-zsh-hook preexec  _set_cmd_title
-  add-zsh-hook precmd   _set_title
-
-  NEWLINE=$'\n'
-  PROMPT="
- %(?.$PROMPT_SYMBOL.$EXIT_VALUE_SYMBOL) %{$fg_bold[white]%}%3~ %{$reset_color%} ${NEWLINE} ▷ "
-
-
-  PROMPT2=' $RPROMPT_SYMBOL '
-  RPROMPT='$(_git_info)'
-}
-
-geometry_prompt
+setopt prompt_subst
+PROMPT=$'\n%F{white}▲ %f${_geometry_ssh}%F{white}%B%~%b%f${_geometry_duration}\n%(?.%F{green}.%F{red})▷%f '
+PROMPT2='%F{white}◇%f '
+RPROMPT='${_geometry_git}${_geometry_git:+${_geometry_aws:+ }}${_geometry_aws}'
