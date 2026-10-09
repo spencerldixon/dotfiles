@@ -72,7 +72,10 @@ HIST_STAMPS="dd.mm.yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git bundler macos rake ruby docker docker-compose)
+plugins=(git bundler macos rake ruby docker docker-compose fzf z)
+
+# Register Docker Desktop completions before Oh My Zsh runs compinit.
+[[ -d "$HOME/.docker/completions" ]] && fpath=("$HOME/.docker/completions" $fpath)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -152,14 +155,21 @@ eval "$(~/.local/bin/mise activate zsh)"
 # UV shell autocompletions
 eval "$(uv generate-shell-completion zsh)"
 
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/spencerdixon/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
-
 # Direnv hooks
-eval "$(direnv hook zsh)"
+if (( ${+commands[direnv]} )); then
+  eval "$(direnv hook zsh)"
+fi
 
 # Hermes Agent command
 case ":$PATH:" in *":$HOME/.local/bin:"*) ;; *) export PATH="$HOME/.local/bin:$PATH" ;; esac
+
+# Load Homebrew's autosuggestions after completion and other shell integrations.
+for autosuggestions_file in \
+  "${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh-autosuggestions/zsh-autosuggestions.zsh" \
+  "/usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh"; do
+  if [[ -r "$autosuggestions_file" ]]; then
+    source "$autosuggestions_file"
+    break
+  fi
+done
+unset autosuggestions_file

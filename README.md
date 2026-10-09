@@ -2,6 +2,8 @@
 
 Personal configuration managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
+See [CHEATSHEET.md](CHEATSHEET.md) for shell shortcuts, Git, Docker, tmux, and mise commands.
+
 | Package | Configuration |
 | --- | --- |
 | `claude` | Claude Code status line script |
@@ -26,6 +28,14 @@ stow --no-folding claude git ghostty mise nvim oh_my_zsh pi tmux zsh
 ```
 
 Stow links files into your home directory. Install the applications separately, including Oh My Zsh if you use the shell configuration.
+
+Install the shell enhancements used by the Zsh configuration:
+
+```sh
+brew install fzf zsh-autosuggestions
+```
+
+The shell enables fzf history search (`Ctrl + R`), file selection (`Ctrl + T`), and directory selection (`Alt + C`). Autosuggestions shows commands from history as you type; press the right arrow at the end of the line to accept one. The bundled Oh My Zsh `z` plugin learns visited directories so you can jump to them with commands such as `z dotfiles`.
 
 If Stow reports existing files, back them up and remove only the conflicting files before retrying. Do not delete whole configuration directories: they may contain credentials or other local data.
 
