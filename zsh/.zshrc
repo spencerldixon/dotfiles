@@ -71,7 +71,7 @@ HIST_STAMPS="dd.mm.yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git bundler macos rake ruby docker docker-compose fzf z)
+plugins=(git bundler macos rake ruby docker docker-compose fzf)
 
 # Register Docker Desktop completions before Oh My Zsh runs compinit.
 [[ -d "$HOME/.docker/completions" ]] && fpath=("$HOME/.docker/completions" $fpath)
@@ -172,3 +172,8 @@ for autosuggestions_file in \
   fi
 done
 unset autosuggestions_file
+
+# Initialize after PATH setup, completions, and other shell integrations.
+if (( ${+commands[zoxide]} )); then
+  eval "$(zoxide init zsh)"
+fi
