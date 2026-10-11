@@ -109,6 +109,10 @@ if [[ -z "$CLAUDECODE" ]] && (( ${+commands[scmpuff]} )); then
   eval "$(scmpuff init --shell=zsh)"
 fi
 
+# Push/pull shortcuts that scmpuff doesn't define.
+alias gps='git push'
+alias gpl='git pull'
+
 # Example aliases
 alias c="clear"
 alias v="vim"
