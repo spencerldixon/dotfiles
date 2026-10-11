@@ -103,7 +103,11 @@ fi
 # lc () { ruby ~/bin/colorls/colorls.rb $1; }
 
 # Settings for SCM Breeze shortcuts
-[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
+# Skipped inside Claude Code: its shell snapshot keeps SCM Breeze's cd/cat/rm aliases
+# but drops the _safe_eval helper they call, so every wrapped command fails.
+if [[ -z "$CLAUDECODE" && -s "$HOME/.scm_breeze/scm_breeze.sh" ]]; then
+  source "$HOME/.scm_breeze/scm_breeze.sh"
+fi
 
 # Fix scm breeze clashing with my C alias
 unset -f cd 2>/dev/null
