@@ -102,20 +102,26 @@ fi
 # Colorize icons in ls with - https://github.com/athityakumar/colorls
 # lc () { ruby ~/bin/colorls/colorls.rb $1; }
 
-# Settings for SCM Breeze shortcuts
-# Skipped inside Claude Code: its shell snapshot keeps SCM Breeze's cd/cat/rm aliases
-# but drops the _safe_eval helper they call, so every wrapped command fails.
-if [[ -z "$CLAUDECODE" && -s "$HOME/.scm_breeze/scm_breeze.sh" ]]; then
-  source "$HOME/.scm_breeze/scm_breeze.sh"
+# Numbered git status with scmpuff: `gs` lists files, then `ga 1-3`, `gd 2`, `n 4`.
+# Skipped inside Claude Code, whose shell snapshot can drop the helper functions that
+# git wrappers like this call, breaking git itself.
+if [[ -z "$CLAUDECODE" ]] && (( ${+commands[scmpuff]} )); then
+  eval "$(scmpuff init --shell=zsh)"
 fi
-
-# Fix scm breeze clashing with my C alias
-unset -f cd 2>/dev/null
 
 # Example aliases
 alias c="clear"
 alias v="vim"
-alias n="nvim"
+
+# nvim, with scmpuff numbers expanded: `n 3` opens file 3 from the last `gs`.
+unalias n 2>/dev/null
+n() {
+  if (( ${+functions[scmpuff_status]} )); then
+    scmpuff exec -- nvim "$@"
+  else
+    nvim "$@"
+  fi
+}
 alias zshconfig="n ~/dotfiles/zsh/.zshrc && . ~/dotfiles/zsh/.zshrc"
 alias zshrc="zshconfig"
 alias vimrc="n ~/dotfiles/vim/.vimrc"
