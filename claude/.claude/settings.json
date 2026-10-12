@@ -1,0 +1,69 @@
+{
+  "includeCoAuthoredBy": false,
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "model": "sonnet",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "^(startup|resume|clear|compact|fork)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/spencerdixon/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash /Users/spencerdixon/.claude/statusline-meters.sh"
+  },
+  "enabledPlugins": {
+    "context7@claude-plugins-official": true,
+    "Notion@claude-plugins-official": true,
+    "interface-design@interface-design": true,
+    "ruby-lsp@claude-plugins-official": true,
+    "caveman@caveman": true,
+    "superpowers@claude-plugins-official": true,
+    "impeccable@impeccable": true,
+    "spencerldixon-skills@spencerldixon": true,
+    "private-skills@spencerldixon-private": true
+  },
+  "extraKnownMarketplaces": {
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
+      }
+    },
+    "impeccable": {
+      "source": {
+        "source": "github",
+        "repo": "pbakaus/impeccable"
+      }
+    },
+    "spencerldixon": {
+      "source": {
+        "source": "github",
+        "repo": "spencerldixon/skills"
+      }
+    },
+    "spencerldixon-private": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/spencerdixon/Rails/private-skills"
+      }
+    }
+  },
+  "effortLevel": "xhigh",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "xhigh"
+    }
+  }
+}
