@@ -1,4 +1,5 @@
 [tools]
+go = "latest"
 ruby = "latest"
 python = "latest"
 uv = "latest"
@@ -6,6 +7,7 @@ terraform = "latest"
 yarn = "1.22.22"
 
 [settings]
+idiomatic_version_file_enable_tools = ["ruby"]
 # Mise will read from .python-version and .tool-versions, but will not use
 # the virtual env created by uv by default. Setting the below allows mise to use the uv venv
 python.uv_venv_auto = true
