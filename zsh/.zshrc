@@ -160,21 +160,25 @@ alias uvrm='uv run manage.py'
 alias uvr='uv run'
 
 # bun completions
-[ -s "/Users/spencerdixon/.bun/_bun" ] && source "/Users/spencerdixon/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
-# Activate mise
-eval "$(~/.local/bin/mise activate zsh)"
+# Personal tools, including agent CLIs and standalone mise installs.
+case ":$PATH:" in *":$HOME/.local/bin:"*) ;; *) export PATH="$HOME/.local/bin:$PATH" ;; esac
+
+# Activate mise from Homebrew or a standalone installation.
+if (( ${+commands[mise]} )); then
+  eval "$(mise activate zsh)"
+fi
 
 # UV shell autocompletions
-eval "$(uv generate-shell-completion zsh)"
+if (( ${+commands[uv]} )); then
+  eval "$(uv generate-shell-completion zsh)"
+fi
 
 # Direnv hooks
 if (( ${+commands[direnv]} )); then
   eval "$(direnv hook zsh)"
 fi
-
-# Hermes Agent command
-case ":$PATH:" in *":$HOME/.local/bin:"*) ;; *) export PATH="$HOME/.local/bin:$PATH" ;; esac
 
 # Load Homebrew's autosuggestions after completion and other shell integrations.
 for autosuggestions_file in \

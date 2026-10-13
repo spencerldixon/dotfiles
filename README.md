@@ -1,100 +1,80 @@
 # 🔴 Dotfiles
 
-Personal configuration managed with [GNU Stow](https://www.gnu.org/software/stow/).
+Personal macOS configuration managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
-See [CHEATSHEET.md](CHEATSHEET.md) for shell shortcuts, Git, Docker, tmux, and mise commands.
-
-See [codex/README.md](codex/README.md) for the Codex terminal status-bar configuration.
+[Command cheatsheet](CHEATSHEET.md) · [Codex status bar](codex/README.md)
 
 | Package | Configuration |
 | --- | --- |
-| `agents` | Shared global instructions for Claude Code, Codex, and Pi |
+| `agents` | Shared instructions for Claude Code, Codex, and Pi |
 | `claude` | Claude Code settings and status line |
-| `git` | Global Git ignore rules |
+| `git` | Global ignore rules |
 | `ghostty` | Ghostty terminal |
 | `mise` | Development tool versions |
 | `nvim` | Neovim |
-| `oh_my_zsh` | Custom Oh My Zsh theme |
-| `pi` | Pi settings, MCP servers, and custom usage footer |
-| `tmux` | tmux and its plugin manager |
-| `zsh` | Zsh shell |
+| `oh_my_zsh` | Custom shell theme |
+| `pi` | Pi settings, MCP servers, and usage footer |
+| `tmux` | tmux and plugin manager |
+| `zsh` | Shell configuration |
 
 ## Installation
 
-Install Stow, then clone this repository with its submodules:
+Install [Homebrew](https://brew.sh) and finish installing Xcode Command Line Tools (`xcode-select --install`) first.
 
 ```sh
-brew install stow
+brew install stow mise neovim tmux jq fzf zsh-autosuggestions zoxide ripgrep tree-sitter-cli node
+brew install openssl@3 readline libyaml gmp autoconf
+brew install --cask ghostty claude-code codex font-jetbrains-mono-nerd-font
+git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+curl -fsSL https://pi.dev/install.sh | sh
+```
+
+Clone and link the configuration, then install the Mise-managed tools:
+
+```sh
 git clone --recurse-submodules https://github.com/spencerldixon/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 stow --no-folding agents claude git ghostty mise nvim oh_my_zsh pi tmux zsh
+mise install
+git config --global core.excludesfile ~/.gitignore_global
+source ~/.zshrc
 ```
 
-Stow links files into your home directory. Install the applications separately, including Oh My Zsh if you use the shell configuration.
+For Stow conflicts, back up and move only the conflicting files, then retry. Keep configuration directories containing credentials or runtime data.
 
-Install the shell enhancements used by the Zsh configuration:
-
-```sh
-brew install fzf zsh-autosuggestions
-```
-
-The shell enables fzf history search (`Ctrl + R`), file selection (`Ctrl + T`), and directory selection (`Alt + C`). Autosuggestions shows commands from history as you type; press the right arrow at the end of the line to accept one. The bundled Oh My Zsh `z` plugin learns visited directories so you can jump to them with commands such as `z dotfiles`.
-
-If Stow reports existing files, back them up and remove only the conflicting files before retrying. Do not delete whole configuration directories: they may contain credentials or other local data.
+Neovim needs version 0.12+ and tree-sitter CLI 0.26.1+; Xcode supplies the C compiler. The extra libraries support Ruby builds. Optional shell helpers: `brew install scmpuff direnv`.
 
 ## Post-installation
 
-- Reload the shell with `source ~/.zshrc`.
-- In tmux, press the prefix (`Ctrl + A`), then `Shift + I` to install plugins.
-- Configure Git to use the global ignore file:
+- Use **JetBrainsMono Nerd Font** in your terminal. Open `nvim` to install plugins, then run `:checkhealth`.
+- In tmux, press `Ctrl + A`, then `Shift + I` to install plugins.
+- Run `claude` and `codex` to sign in. In Pi, run `/login`, then `pi mcp login atlassian` in your shell.
+- Shell navigation uses zoxide (`z dotfiles`); fzf provides `Ctrl + R` history and `Ctrl + T` file search.
 
-  ```sh
-  git config --global core.excludesfile ~/.gitignore_global
-  ```
+## Agent instructions
 
-## AI agent instructions
+Edit [AGENTS.md](AGENTS.md) once for all three harnesses. `stow --no-folding agents` installs these global symlinks:
 
-[AGENTS.md](AGENTS.md) is the single source for personal instructions shared by Claude Code, Codex, and Pi. The `agents` package installs symlinks at each harness's global instruction path:
-
-| Harness | Global instruction file |
+| Harness | Instruction file |
 | --- | --- |
 | Claude Code | `~/.claude/CLAUDE.md` |
 | Codex | `~/.codex/AGENTS.md` |
 | Pi | `~/.pi/agent/AGENTS.md` |
 
-To install only these links:
+Start new Claude Code and Codex sessions after edits; use `/reload` in Pi. Pi installs the shared skills package at startup.
+
+## Local dependencies
+
+Before starting Claude, restore the private skills checkout to `~/Rails/private-skills` and register its path on this machine:
 
 ```sh
-cd ~/dotfiles
-stow --no-folding agents
+claude plugin marketplace add "$HOME/Rails/private-skills"
+claude plugin install private-skills@spencerldixon-private
 ```
 
-All three paths resolve to this repository's `AGENTS.md`. Edit that one file to update the defaults for every project. Start a new Claude Code or Codex session to load changes; in Pi, start a new session or run `/reload`.
-
-Project instruction files can add repository-specific guidance. See the [Claude Code memory documentation](https://code.claude.com/docs/en/memory) and [Codex AGENTS.md guide](https://learn.chatgpt.com/docs/agent-configuration/agents-md) for how instructions load.
-
-## Pi
-
-The `pi` package links configuration into `~/.pi/agent`. To install only this package:
-
-```sh
-cd ~/dotfiles
-stow --no-folding pi
-```
-
-Credentials, sessions, installed packages, caches, and the Herdr-managed extension stay local and are not tracked.
-
-On a new machine:
-
-1. Install Pi.
-2. Run `/login` inside Pi to authenticate your AI provider.
-3. Run `pi mcp login atlassian` to authenticate the Atlassian MCP server.
-
-Pi installs the skills package declared in `settings.json` at startup. Run `/reload` in an existing Pi session after changing configuration.
+Herdr hooks run only when installed. Credentials, sessions, caches, and Herdr-managed files stay local.
 
 ## Updating
-
-Pull configuration changes and update submodules:
 
 ```sh
 cd ~/dotfiles
@@ -102,8 +82,4 @@ git pull
 git submodule update --init --recursive
 ```
 
-Run the Stow command again when adding new configuration files. Edits to linked files appear directly in this repository; review them before committing.
-
-### Submodules
-
-- `tmux/.tmux/plugins/tpm` — [tmux Plugin Manager](https://github.com/tmux-plugins/tpm)
+Rerun the relevant Stow command when adding files. Linked-file edits change this repository directly.
