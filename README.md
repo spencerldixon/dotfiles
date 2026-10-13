@@ -8,7 +8,8 @@ See [codex/README.md](codex/README.md) for the Codex terminal status-bar configu
 
 | Package | Configuration |
 | --- | --- |
-| `claude` | Claude Code status line script |
+| `agents` | Shared global instructions for Claude Code, Codex, and Pi |
+| `claude` | Claude Code settings and status line |
 | `git` | Global Git ignore rules |
 | `ghostty` | Ghostty terminal |
 | `mise` | Development tool versions |
@@ -26,7 +27,7 @@ Install Stow, then clone this repository with its submodules:
 brew install stow
 git clone --recurse-submodules https://github.com/spencerldixon/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-stow --no-folding claude git ghostty mise nvim oh_my_zsh pi tmux zsh
+stow --no-folding agents claude git ghostty mise nvim oh_my_zsh pi tmux zsh
 ```
 
 Stow links files into your home directory. Install the applications separately, including Oh My Zsh if you use the shell configuration.
@@ -50,6 +51,27 @@ If Stow reports existing files, back them up and remove only the conflicting fil
   ```sh
   git config --global core.excludesfile ~/.gitignore_global
   ```
+
+## AI agent instructions
+
+[AGENTS.md](AGENTS.md) is the single source for personal instructions shared by Claude Code, Codex, and Pi. The `agents` package installs symlinks at each harness's global instruction path:
+
+| Harness | Global instruction file |
+| --- | --- |
+| Claude Code | `~/.claude/CLAUDE.md` |
+| Codex | `~/.codex/AGENTS.md` |
+| Pi | `~/.pi/agent/AGENTS.md` |
+
+To install only these links:
+
+```sh
+cd ~/dotfiles
+stow --no-folding agents
+```
+
+All three paths resolve to this repository's `AGENTS.md`. Edit that one file to update the defaults for every project. Start a new Claude Code or Codex session to load changes; in Pi, start a new session or run `/reload`.
+
+Project instruction files can add repository-specific guidance. See the [Claude Code memory documentation](https://code.claude.com/docs/en/memory) and [Codex AGENTS.md guide](https://learn.chatgpt.com/docs/agent-configuration/agents-md) for how instructions load.
 
 ## Pi
 
