@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "tools": [
+    {
+      "id": "json-syntax",
+      "include": ["**/*.json"],
+      "exclude": ["**/node_modules/**", "**/vendor/**", "**/dist/**"],
+      "linter": {
+        "bin": "node",
+        "args": ["-e", "JSON.parse(require('node:fs').readFileSync(process.argv[1], 'utf8'))", "{file}"],
+        "timeoutMs": 10000,
+        "diagnosticExitCodes": [1]
+      }
+    },
+    {
+      "id": "javascript-syntax",
+      "include": ["**/*.js", "**/*.mjs", "**/*.cjs"],
+      "exclude": ["**/node_modules/**", "**/vendor/**", "**/dist/**"],
+      "linter": {
+        "bin": "node",
+        "args": ["--check", "{file}"],
+        "timeoutMs": 10000,
+        "diagnosticExitCodes": [1]
+      }
+    },
+    {
+      "id": "ruby-syntax",
+      "include": ["**/*.rb", "**/*.rake", "**/Gemfile", "**/Rakefile"],
+      "exclude": ["**/vendor/**", "**/tmp/**"],
+      "rootMarkers": ["Gemfile", ".ruby-version", ".git"],
+      "linter": {
+        "bin": "ruby",
+        "args": ["-c", "{file}"],
+        "cwd": "{root}",
+        "timeoutMs": 10000,
+        "diagnosticExitCodes": [1]
+      }
+    }
+  ]
+}

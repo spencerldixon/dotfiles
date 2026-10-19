@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "1.2.0",
+  "lastChangelogVersion": "1.3.0",
   "theme": "dark",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-6.1-sol",
@@ -7,7 +7,23 @@
   "editorPaddingX": 0,
   "externalEditor": "nvim",
   "tuiMode": "fullscreen",
+  "quietStartup": true,
   "packages": [
-    "git:github.com/spencerldixon/skills"
-  ]
+    "git:github.com/spencerldixon/skills",
+    {
+      "source": "git:github.com/mattpocock/skills",
+      "skills": [
+        "skills/engineering/**",
+        "skills/productivity/**"
+      ]
+    },
+    "npm:pi-web-access",
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:@ff-labs/pi-fff",
+    "npm:pi-lsp@0.1.7",
+    "npm:pi-code-quality@0.1.4",
+    "npm:pi-obsidian-vault",
+    "npm:@aliou/pi-guardrails"
+  ],
+  "deviceId": "97cb0cd4-4bee-4982-8399-efd8b215f2c5"
 }

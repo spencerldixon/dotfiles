@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "servers": [
+    {
+      "id": "typescript",
+      "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.mjs", "**/*.cjs", "**/*.mts", "**/*.cts"],
+      "exclude": ["**/node_modules/**", "**/dist/**", "**/vendor/**"],
+      "rootMarkers": ["tsconfig.json", "jsconfig.json", "package.json", ".git"],
+      "bin": "typescript-language-server",
+      "args": ["--stdio"],
+      "cwd": "{root}",
+      "languageIdByExtension": { ".ts": "typescript", ".tsx": "typescriptreact", ".js": "javascript", ".jsx": "javascriptreact", ".mjs": "javascript", ".cjs": "javascript", ".mts": "typescript", ".cts": "typescript" },
+      "startupTimeoutMs": 30000,
+      "diagnosticsWaitMs": 1500
+    },
+    {
+      "id": "ruby",
+      "include": ["**/*.rb", "**/*.rake", "**/Gemfile", "**/Rakefile"],
+      "exclude": ["**/vendor/**", "**/tmp/**"],
+      "rootMarkers": ["Gemfile", ".ruby-version", ".git"],
+      "bin": "ruby-lsp",
+      "args": [],
+      "cwd": "{root}",
+      "languageIdByExtension": { ".rb": "ruby", ".rake": "ruby" },
+      "startupTimeoutMs": 60000,
+      "diagnosticsWaitMs": 1500
+    }
+  ]
+}
