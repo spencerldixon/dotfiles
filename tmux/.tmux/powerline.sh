@@ -1,16 +1,12 @@
 #!/bin/sh
 
-LSEP=
-RSEP=
+# Prints the current Spotify track for the status bar, or nothing when idle.
+# Date, time and battery are rendered natively in status-right.
 
-spotify_text_colour='#bb9af7'
-spotify_colour=default
+spotify_text_colour='magenta'
 
-date_time_colour='#24283b'
-date_time_text_colour='#a9b1d6'
+track=$(osascript ~/.tmux/current_track.scpt)
 
-SPOTIFY="#[fg=${spotify_text_colour},bg=${spotify_colour}] $(osascript ~/.tmux/current_track.scpt)"
-DATE="#[fg=${date_time_colour},bg=default]$LSEP#[fg=${date_time_text_colour},bg=${date_time_colour}] $(date +'%D')"
-TIME="#[fg=${date_time_text_colour},bg=${date_time_colour}]#[fg=${date_time_text_colour},bg=${date_time_colour}] $(date +'%H:%M')"
-
-echo "$SPOTIFY" "$DATE | $TIME #[default]" | sed 's/ *$/ /g'
+if [ -n "$track" ]; then
+  printf '#[fg=%s]%s ' "$spotify_text_colour" "$track"
+fi
