@@ -1,4 +1,4 @@
-import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-agent";
+import { readStoredCredential, type ExtensionAPI, type ExtensionContext } from "@earendil-works/pi-coding-agent";
 import { truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
 import { homedir } from "node:os";
 
@@ -6,6 +6,15 @@ type Window = { used_percent?: number; limit_window_seconds?: number; reset_at?:
 const percent = (value: unknown): number | undefined =>
   typeof value === "number" && Number.isFinite(value) ? Math.max(0, Math.min(100, value)) : undefined;
 const clean = (value: string) => value.replace(/[\x00-\x1f\x7f]/g, " ");
+const resetTimestamp = (window: Window | undefined): number | undefined => {
+  const resetAt = window?.reset_at;
+  const resetAfter = window?.reset_after_seconds;
+  return typeof resetAt === "number" && Number.isFinite(resetAt) && resetAt > 0
+    ? resetAt * 1000
+    : typeof resetAfter === "number" && Number.isFinite(resetAfter) && resetAfter >= 0
+      ? Date.now() + resetAfter * 1000
+      : undefined;
+};
 
 /** Personal footer. All meters show USED capacity, not remaining capacity. */
 export default function (pi: ExtensionAPI) {
@@ -17,21 +26,62 @@ export default function (pi: ExtensionAPI) {
     if (ctx.mode !== "tui") return;
 
     ctx.ui.setFooter((tui, theme, footerData) => {
-      let current: number | undefined;
-      let weekly: number | undefined;
-      let currentLabel = "Current";
-      let currentResetAt: number | undefined;
+      const provider = ctx.model?.provider;
+      const supported = provider === "openai-codex" || provider === "github-copilot"
+        || ((provider === "openai" || provider === "anthropic")
+          && !!ctx.model && ctx.modelRegistry.isUsingOAuth(ctx.model));
+      type UsageMeter = { label: string; value?: number; resetAt?: number };
+      let usage: UsageMeter[] = [];
+      const dateTimestamp = (value: unknown) => {
+        const parsed = typeof value === "string" ? Date.parse(value) : NaN;
+        return Number.isFinite(parsed) ? parsed : undefined;
+      };
       let state = "loading";
       let disposed = false;
       let pending = false;
       let controller: AbortController | undefined;
-      const unsubscribe = footerData.onBranchChange(() => tui.requestRender());
+      let git: { branch: string; dirty: boolean; conflicted: boolean; ahead: number; behind: number } | undefined;
+      let gitPending = false;
+      async function updateGit() {
+        if (disposed || gitPending) return;
+        gitPending = true;
+        try {
+          const result = await pi.exec("git", ["--no-optional-locks", "status", "--porcelain=v2", "--branch",
+            "--untracked-files=normal", "--ignore-submodules"], { cwd: ctx.cwd, timeout: 5000 });
+          if (disposed) return;
+          git = undefined;
+          if (result.code === 0) {
+            let branch = "", oid = "", dirty = false, conflicted = false, ahead = 0, behind = 0;
+            for (const line of result.stdout.split("\n")) {
+              if (line.startsWith("# branch.head ")) branch = line.slice(14);
+              else if (line.startsWith("# branch.oid ")) oid = line.slice(13);
+              else if (line.startsWith("# branch.ab ")) {
+                const match = line.match(/^# branch\.ab \+(\d+) -(\d+)$/);
+                if (match) { ahead = Number(match[1]); behind = Number(match[2]); }
+              } else if (line && !line.startsWith("# ")) {
+                dirty = true;
+                if (line.startsWith("u ")) conflicted = true;
+              }
+            }
+            if (branch === "(detached)") branch = `@${oid.slice(0, 7)}`;
+            if (branch) git = { branch, dirty, conflicted, ahead, behind };
+          }
+        } catch {
+          if (!disposed) git = undefined;
+        } finally {
+          gitPending = false;
+          if (!disposed) tui.requestRender();
+        }
+      }
+      const unsubscribe = footerData.onBranchChange(() => { void updateGit(); });
+      const gitTimer = setInterval(() => { void updateGit(); }, 5000);
+      gitTimer.unref();
+      void updateGit();
 
       async function update() {
         if (disposed || pending) return;
-        if (ctx.model?.provider !== "openai-codex") {
-          current = weekly = undefined;
-          currentResetAt = undefined;
+        if (!supported) {
+          usage = [];
           state = "unavailable";
           tui.requestRender();
           return;
@@ -40,38 +90,76 @@ export default function (pi: ExtensionAPI) {
         controller = new AbortController();
         const timeout = setTimeout(() => controller?.abort(), 10000);
         try {
-          // Use Pi's auth resolver so expired OAuth credentials are refreshed by Pi.
-          const token = await ctx.modelRegistry.getApiKeyForProvider("openai-codex");
-          if (disposed) return;
-          if (!token) throw new Error("No Codex credentials");
-          const payload = JSON.parse(Buffer.from(token.split(".")[1], "base64url").toString());
-          const accountId = payload["https://api.openai.com/auth"]?.chatgpt_account_id;
-          if (!accountId) throw new Error("Missing account ID");
-          const response = await fetch("https://chatgpt.com/backend-api/wham/usage", {
-            headers: { Authorization: `Bearer ${token}`, "ChatGPT-Account-Id": accountId },
-            signal: controller.signal,
-          });
-          if (!response.ok) throw new Error("Usage unavailable");
-          const data = await response.json() as {
-            rate_limit?: { primary_window?: Window; secondary_window?: Window };
+          const request = async (url: string, headers: Record<string, string>) => {
+            const response = await fetch(url, { headers, signal: controller!.signal, redirect: "error" });
+            if (!response.ok) throw new Error("Usage unavailable");
+            return response.json();
           };
+          let next: UsageMeter[];
+          if (provider === "github-copilot") {
+            // Pi's resolved access token is for inference. This endpoint needs the
+            // original GitHub token, stored in the OAuth refresh field by Pi.
+            const credential = readStoredCredential("github-copilot");
+            if (credential?.type === "oauth" && credential.enterpriseUrl) throw new Error("Unsupported GitHub host");
+            const token = credential?.type === "oauth" ? credential.refresh
+              : process.env.COPILOT_GITHUB_TOKEN;
+            if (!token) throw new Error("No GitHub credentials");
+            const data = await request("https://api.github.com/copilot_internal/user", {
+              Authorization: `Bearer ${token}`, Accept: "application/json",
+              "User-Agent": "pi-usage-footer", "X-GitHub-Api-Version": "2022-11-28",
+            });
+            const resetAt = dateTimestamp(data.quota_reset_date_utc ?? data.quota_reset_date);
+            next = [];
+            for (const [key, label] of [["premium_interactions", "Premium"], ["chat", "Chat"], ["completions", "Completions"]]) {
+              const quota = data.quota_snapshots?.[key];
+              // Unlimited quotas have no meter or reset worth showing.
+              if (!quota || quota.unlimited === true) continue;
+              const remainingPercent = percent(quota.percent_remaining);
+              const remaining = quota.remaining ?? quota.quota_remaining;
+              const value = remainingPercent !== undefined ? 100 - remainingPercent
+                : typeof quota.entitlement === "number" && quota.entitlement > 0 && typeof remaining === "number"
+                  ? percent(100 * (1 - remaining / quota.entitlement)) : undefined;
+              next.push({ label, value, resetAt });
+            }
+          } else {
+            // Pi refreshes expired OAuth credentials before returning the token.
+            const token = await ctx.modelRegistry.getApiKeyForProvider(provider!);
+            if (disposed) return;
+            if (!token) throw new Error("No credentials");
+            if (provider === "anthropic") {
+              const data = await request("https://api.anthropic.com/api/oauth/usage", {
+                Authorization: `Bearer ${token}`, "anthropic-beta": "oauth-2025-04-20",
+              });
+              next = [];
+              for (const [key, label] of [["five_hour", "Current (5h)"], ["seven_day", "Weekly"],
+                ["seven_day_sonnet", "Sonnet weekly"], ["seven_day_opus", "Opus weekly"]]) {
+                const window = data[key];
+                if (window) next.push({ label, value: percent(window.utilization), resetAt: dateTimestamp(window.resets_at) });
+              }
+            } else {
+              const payload = JSON.parse(Buffer.from(token.split(".")[1], "base64url").toString());
+              const accountId = payload["https://api.openai.com/auth"]?.chatgpt_account_id;
+              if (!accountId) throw new Error("Missing account ID");
+              const data = await request("https://chatgpt.com/backend-api/wham/usage", {
+                Authorization: `Bearer ${token}`, "ChatGPT-Account-Id": accountId,
+              });
+              const window: Window | undefined = data.rate_limit?.primary_window;
+              const weekly: Window | undefined = data.rate_limit?.secondary_window;
+              const seconds = window?.limit_window_seconds;
+              next = [
+                { label: seconds && seconds % 3600 === 0 ? `Current (${seconds / 3600}h)` : "Current",
+                  value: percent(window?.used_percent), resetAt: resetTimestamp(window) },
+                { label: "Weekly", value: percent(weekly?.used_percent), resetAt: resetTimestamp(weekly) },
+              ];
+            }
+          }
           if (disposed) return;
-          current = percent(data.rate_limit?.primary_window?.used_percent);
-          weekly = percent(data.rate_limit?.secondary_window?.used_percent);
-          const window = data.rate_limit?.primary_window;
-          const resetAt = window?.reset_at;
-          const resetAfter = window?.reset_after_seconds;
-          currentResetAt = typeof resetAt === "number" && Number.isFinite(resetAt) && resetAt > 0
-            ? resetAt * 1000
-            : typeof resetAfter === "number" && Number.isFinite(resetAfter) && resetAfter >= 0
-              ? Date.now() + resetAfter * 1000
-              : undefined;
-          const seconds = window?.limit_window_seconds;
-          currentLabel = seconds && seconds % 3600 === 0 ? `Current (${seconds / 3600}h)` : "Current";
-          state = current === undefined && weekly === undefined ? "unavailable" : "ready";
+          usage = next;
+          // An empty list means every quota is unlimited, so there is nothing to report.
+          state = usage.length === 0 || usage.some(item => item.value !== undefined) ? "ready" : "unavailable";
         } catch {
           // Never log credentials or provider response bodies. Mark old readings as stale.
-          if (!disposed) state = current !== undefined || weekly !== undefined ? "stale" : "unavailable";
+          if (!disposed) state = usage.some(item => item.value !== undefined) ? "stale" : "unavailable";
         } finally {
           clearTimeout(timeout);
           pending = false;
@@ -87,6 +175,7 @@ export default function (pi: ExtensionAPI) {
         if (disposed) return;
         disposed = true;
         clearInterval(timer);
+        clearInterval(gitTimer);
         controller?.abort();
         unsubscribe();
         if (refresh === update) refresh = undefined;
@@ -99,58 +188,75 @@ export default function (pi: ExtensionAPI) {
         const bar = value === undefined
           ? theme.fg("dim", "░".repeat(cells))
           : theme.fg(color, "█".repeat(filled)) + theme.fg("dim", "░".repeat(cells - filled));
-        return `${theme.fg("muted", label)} [${bar}] ${theme.fg(color, value === undefined ? "n/a" : `${Math.round(value)}%`)}`;
+        return `${theme.fg("muted", label)} ${cells ? `${bar} ` : ""}${theme.fg(color, value === undefined ? "n/a" : `${Math.round(value)}%`)}`;
       }
 
       return {
         dispose,
         invalidate() {},
         render(width: number) {
-          const model = ctx.model?.id ?? "no-model";
+          const model = ctx.model ? `${ctx.model.provider}/${ctx.model.id}` : "no-model";
           const effort = pi.getThinkingLevel();
-          const branch = footerData.getGitBranch();
+          const branch = git?.branch ?? footerData.getGitBranch();
           const home = homedir();
           const cwd = ctx.cwd === home ? "~" : ctx.cwd.startsWith(`${home}/`) ? `~${ctx.cwd.slice(home.length)}` : ctx.cwd;
-          const location = clean(`${cwd}${branch ? ` (${branch})` : ""}`);
-          const identity = theme.fg("accent", clean(`${model} · effort ${effort}`));
+          const modelColor = /claude.*opus/i.test(model) ? "thinkingHigh"
+            : /claude.*sonnet/i.test(model) ? "warning"
+            : /claude.*haiku/i.test(model) ? "success"
+            : /gpt/i.test(model) ? "accent" : "thinkingMedium";
+          const effortColors = {
+            off: "dim", minimal: "thinkingMinimal", low: "thinkingLow", medium: "thinkingMedium",
+            high: "thinkingHigh", xhigh: "thinkingXhigh", max: "thinkingMax",
+          } as const;
+          const identity = theme.fg(modelColor, clean(model)) + "  "
+            + theme.fg(effortColors[effort] ?? "accent", effort);
+          const pathText = (budget: number) =>
+            theme.fg("muted", truncateToWidth(clean(cwd), Math.max(0, budget)));
           const lines: string[] = [];
-          if (visibleWidth(location) + visibleWidth(identity) + 2 <= width) {
-            lines.push(theme.fg("dim", location) + " ".repeat(width - visibleWidth(location) - visibleWidth(identity)) + identity);
-          } else {
-            lines.push(identity);
-            lines.push(theme.fg("dim", location));
-          }
-          const codex = ctx.model?.provider === "openai-codex";
-          const cells = width >= 90 ? 10 : 6;
-          const meters = [
-            meter("Context", percent(ctx.getContextUsage()?.percent), cells),
-            meter(currentLabel, codex ? current : undefined, cells),
-            meter("Weekly", codex ? weekly : undefined, cells),
+          // Always show Context, Current and Weekly. Use n/a when a provider has no reading.
+          const current = usage.find(item => item.label.startsWith("Current"));
+          const weekly = usage.find(item => item.label === "Weekly");
+          const meters: UsageMeter[] = [
+            { label: "Context", value: percent(ctx.getContextUsage()?.percent) },
+            current ?? { label: "Current" },
+            weekly ?? { label: "Weekly" },
+            ...usage.filter(item => item !== current && item !== weekly),
           ];
+          const resetText = (resetAt: number) => {
+            const minutes = Math.max(0, Math.ceil((resetAt - Date.now()) / 60000));
+            const days = Math.floor(minutes / 1440);
+            const hours = Math.floor(minutes % 1440 / 60);
+            return minutes === 0 ? "reset due"
+              : `↻${days > 0 ? `${days}d ${hours}h` : hours > 0 ? `${hours}h ${minutes % 60}m` : `${minutes}m`}`;
+          };
+          const statuses = [...footerData.getExtensionStatuses().values()].map(clean);
+          const notices = [
+            ...(supported && state !== "ready" ? [`Usage: ${state}`] : []),
+            ...statuses,
+          ];
+          const meterRowFor = (cells: number, resets: boolean) => [
+            ...meters.map(item => meter(item.label, item.value, cells)
+              + (resets && item.resetAt !== undefined ? ` ${theme.fg("dim", resetText(item.resetAt))}` : "")),
+            ...notices,
+          ].join("   ");
           const centered = (line: string) =>
             " ".repeat(Math.max(0, Math.floor((width - visibleWidth(line)) / 2))) + line;
-          let row = "";
-          for (const item of meters) {
-            if (row && visibleWidth(row) + visibleWidth(item) + 3 > width) {
-              lines.push(centered(row));
-              row = item;
-            } else row += `${row ? "   " : ""}${item}`;
-          }
-          if (row) lines.push(centered(row));
-          if (codex && currentResetAt !== undefined) {
-            const minutes = Math.max(0, Math.ceil((currentResetAt - Date.now()) / 60000));
-            const countdown = minutes >= 60 ? `${Math.floor(minutes / 60)}h ${minutes % 60}m` : `${minutes}m`;
-            const resetTime = new Date(currentResetAt).toLocaleTimeString(undefined, {
-              hour: "numeric", minute: "2-digit", timeZoneName: "short",
-            });
-            const text = minutes > 0
-              ? `Current resets at ${resetTime} · in ${countdown}`
-              : "Current reset due · awaiting usage refresh";
-            lines.push(centered(theme.fg("dim", text)));
-          }
-          if (codex && state !== "ready") lines.push(centered(theme.fg("dim", `Usage: ${state}`)));
-          const statuses = [...footerData.getExtensionStatuses().values()].map(clean);
-          if (statuses.length) lines.push(statuses.join("  "));
+          // Shrink bars before hiding countdowns. Never wrap into extra rows.
+          const candidates = [meterRowFor(10, true), meterRowFor(6, true), meterRowFor(0, true), meterRowFor(0, false)];
+          const meterRow = candidates.find(row => visibleWidth(row) <= width) ?? candidates[candidates.length - 1];
+          const gitStatus = !git ? theme.fg("dim", "?")
+            : git.conflicted ? theme.fg("error", "!")
+            : git.dirty ? theme.fg("warning", "±") : theme.fg("success", "✓");
+          const branchText = branch ? " " + theme.fg("text", clean(branch)) + " " + gitStatus
+            + (git?.ahead ? theme.fg("accent", ` ↑${git.ahead}`) : "")
+            + (git?.behind ? theme.fg("accent", ` ↓${git.behind}`) : "") : "";
+          const rightText = (branchText ? branchText.trimStart() + "  " : "") + identity;
+          const leftBudget = width - visibleWidth(rightText) - 2;
+          const left = pathText(Math.min(Math.max(0, width), leftBudget >= 4
+            ? leftBudget : Math.max(4, Math.floor(width / 3))));
+          const right = truncateToWidth(rightText, Math.max(0, width - visibleWidth(left) - 2));
+          lines.push(left + " ".repeat(Math.max(0, width - visibleWidth(left) - visibleWidth(right))) + right);
+          lines.push(centered(meterRow));
           return lines.map(line => truncateToWidth(line, Math.max(0, width)));
         },
       };
@@ -161,7 +267,7 @@ export default function (pi: ExtensionAPI) {
   pi.on("model_select", (_event, ctx) => install(ctx));
   pi.on("session_shutdown", () => { cleanup?.(); cleanup = undefined; });
   pi.registerCommand("usage-refresh", {
-    description: "Refresh the footer's Codex subscription usage meters",
+    description: "Refresh the active provider's subscription usage meters",
     handler: async () => { await refresh?.(); },
   });
 }
