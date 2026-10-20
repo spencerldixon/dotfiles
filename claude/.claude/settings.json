@@ -25,8 +25,6 @@
   },
   "enabledPlugins": {
     "context7@claude-plugins-official": true,
-    "Notion@claude-plugins-official": true,
-    "interface-design@interface-design": true,
     "ruby-lsp@claude-plugins-official": true,
     "caveman@caveman": true,
     "superpowers@claude-plugins-official": true,
@@ -59,12 +57,6 @@
         "path": "/Users/spencerdixon/Rails/private-skills"
       }
     },
-    "interface-design": {
-      "source": {
-        "source": "github",
-        "repo": "Dammyjay93/interface-design"
-      }
-    }
   },
   "effortLevel": "xhigh",
   "modelSettings": {
