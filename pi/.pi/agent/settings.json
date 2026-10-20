@@ -3,6 +3,7 @@
   "theme": "dark",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-6.1-sol",
+  "defaultThinkingLevel": "medium",
   "showHardwareCursor": false,
   "editorPaddingX": 0,
   "externalEditor": "nvim",
@@ -25,5 +26,16 @@
     "npm:pi-obsidian-vault",
     "npm:@aliou/pi-guardrails"
   ],
-  "deviceId": "97cb0cd4-4bee-4982-8399-efd8b215f2c5"
+  "deviceId": "97cb0cd4-4bee-4982-8399-efd8b215f2c5",
+  "enabledModels": [
+    "github-copilot/claude-opus-5.5",
+    "github-copilot/claude-sonnet-5.5",
+    "github-copilot/gpt-6-astra",
+    "github-copilot/gpt-6.1-sol",
+    "github-copilot/claude-haiku-5.5",
+    "openai-codex/gpt-6.1-sol",
+    "openai-codex/gpt-6-sol",
+    "openai-codex/gpt-6-luna",
+    "openai-codex/gpt-6-astra"
+  ]
 }
