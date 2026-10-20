@@ -182,13 +182,10 @@ export default function (pi: ExtensionAPI) {
       };
       cleanup = dispose;
 
-      function meter(label: string, value: number | undefined, cells: number) {
+      function usageText(label: string, value: number | undefined) {
         const color = value === undefined ? "dim" : value >= 90 ? "error" : value >= 70 ? "warning" : "success";
-        const filled = value === undefined ? 0 : Math.round(value / 100 * cells);
-        const bar = value === undefined
-          ? theme.fg("dim", "░".repeat(cells))
-          : theme.fg(color, "█".repeat(filled)) + theme.fg("dim", "░".repeat(cells - filled));
-        return `${theme.fg("muted", label)} ${cells ? `${bar} ` : ""}${theme.fg(color, value === undefined ? "n/a" : `${Math.round(value)}%`)}`;
+        return theme.fg("muted", label) + " "
+          + theme.fg(color, value === undefined ? "n/a" : `${Math.round(value)}%`);
       }
 
       return {
@@ -212,7 +209,6 @@ export default function (pi: ExtensionAPI) {
             + theme.fg(effortColors[effort] ?? "accent", effort);
           const pathText = (budget: number) =>
             theme.fg("muted", truncateToWidth(clean(cwd), Math.max(0, budget)));
-          const lines: string[] = [];
           // Always show Context, Current and Weekly. Use n/a when a provider has no reading.
           const current = usage.find(item => item.label.startsWith("Current"));
           const weekly = usage.find(item => item.label === "Weekly");
@@ -227,37 +223,38 @@ export default function (pi: ExtensionAPI) {
             const days = Math.floor(minutes / 1440);
             const hours = Math.floor(minutes % 1440 / 60);
             return minutes === 0 ? "reset due"
-              : `↻${days > 0 ? `${days}d ${hours}h` : hours > 0 ? `${hours}h ${minutes % 60}m` : `${minutes}m`}`;
+              : `↻ ${days > 0 ? `${days}d ${hours}h` : hours > 0 ? `${hours}h ${minutes % 60}m` : `${minutes}m`}`;
           };
           const statuses = [...footerData.getExtensionStatuses().values()].map(clean);
           const notices = [
             ...(supported && state !== "ready" ? [`Usage: ${state}`] : []),
             ...statuses,
           ];
-          const meterRowFor = (cells: number, resets: boolean) => [
-            ...meters.map(item => meter(item.label, item.value, cells)
+          const usageRowFor = (resets: boolean) => [
+            ...meters.map(item => usageText(item.label, item.value)
               + (resets && item.resetAt !== undefined ? ` ${theme.fg("dim", resetText(item.resetAt))}` : "")),
             ...notices,
           ].join("   ");
-          const centered = (line: string) =>
-            " ".repeat(Math.max(0, Math.floor((width - visibleWidth(line)) / 2))) + line;
-          // Shrink bars before hiding countdowns. Never wrap into extra rows.
-          const candidates = [meterRowFor(10, true), meterRowFor(6, true), meterRowFor(0, true), meterRowFor(0, false)];
-          const meterRow = candidates.find(row => visibleWidth(row) <= width) ?? candidates[candidates.length - 1];
           const gitStatus = !git ? theme.fg("dim", "?")
             : git.conflicted ? theme.fg("error", "!")
             : git.dirty ? theme.fg("warning", "±") : theme.fg("success", "✓");
           const branchText = branch ? " " + theme.fg("text", clean(branch)) + " " + gitStatus
             + (git?.ahead ? theme.fg("accent", ` ↑${git.ahead}`) : "")
             + (git?.behind ? theme.fg("accent", ` ↓${git.behind}`) : "") : "";
-          const rightText = (branchText ? branchText.trimStart() + "  " : "") + identity;
-          const leftBudget = width - visibleWidth(rightText) - 2;
-          const left = pathText(Math.min(Math.max(0, width), leftBudget >= 4
-            ? leftBudget : Math.max(4, Math.floor(width / 3))));
-          const right = truncateToWidth(rightText, Math.max(0, width - visibleWidth(left) - 2));
-          lines.push(left + " ".repeat(Math.max(0, width - visibleWidth(left) - visibleWidth(right))) + right);
-          lines.push(centered(meterRow));
-          return lines.map(line => truncateToWidth(line, Math.max(0, width)));
+          const columns = Math.max(0, width);
+          const rightText = [branchText.trimStart(), identity].filter(Boolean).join("  ");
+          // Reserve equal space beside usage so its center is the terminal's center.
+          const sideWidth = Math.max(Math.min(visibleWidth(clean(cwd)), 12), visibleWidth(rightText));
+          const centerBudget = Math.max(Math.floor(columns / 3), columns - 2 * (sideWidth + 2));
+          const fullUsage = usageRowFor(true);
+          const usageRow = truncateToWidth(
+            visibleWidth(fullUsage) <= centerBudget ? fullUsage : usageRowFor(false), centerBudget);
+          const centerStart = Math.max(0, Math.floor((columns - visibleWidth(usageRow)) / 2));
+          const centerEnd = centerStart + visibleWidth(usageRow);
+          const left = pathText(Math.max(0, centerStart - 2));
+          const right = truncateToWidth(rightText, Math.max(0, columns - centerEnd - 2));
+          return [left + " ".repeat(Math.max(0, centerStart - visibleWidth(left)))
+            + usageRow + " ".repeat(Math.max(0, columns - centerEnd - visibleWidth(right))) + right];
         },
       };
     });
