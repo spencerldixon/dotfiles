@@ -39,6 +39,11 @@ stow --no-folding agents claude codex git ghostty mise nvim oh_my_zsh pi tmux zs
 
 - In tmux, press `Ctrl + A`, then `Shift + I` to install plugins.
 - Shell navigation uses zoxide (`z dotfiles`); fzf provides `Ctrl + R` history and `Ctrl + T` file search.
+- Link the agent wiki to `~/wiki` (the Synology folder is `SynologyDrive-sync` or `SynologyDrive-home` depending on the Mac):
+
+  ```sh
+  ln -sfn "$(ls -d ~/Library/CloudStorage/SynologyDrive-*/"2. Areas/Obsidian" | head -1)" ~/wiki
+  ```
 
 ## Agent instructions
 

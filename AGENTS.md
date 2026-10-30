@@ -9,9 +9,9 @@
 
 ## Shared memory and state
 
-- The Obsidian LLM wiki at `~/Library/CloudStorage/SynologyDrive-sync/2. Areas/Obsidian/` is the default memory and state store for every AI agent (Claude, Codex, Pi and any other)
+- The Obsidian LLM wiki at `~/wiki/` is the default memory and state store for every AI agent (Claude, Codex, Pi and any other)
 - Everything goes there: preferences, decisions, research, gotchas, research for potential tickets, and the state of ongoing work (current status, branches, open PRs, next step, resume notes)
 - Do not write to agent-local memory, scratch plan files or resume prompts outside the vault. Docs meant for a repo's team stay in that repo; link to them from the vault
 - Before a task, read `index.md` there, then only the notes whose description matches. Follow `schema.md` to write, ingest or lint
 - Update the work's state note as you go and before you stop, so another agent can pick it up
-- Use local memory only if the vault cannot be read, and say so
+- Use local memory only if the vault cannot be read, and say so. If `~/wiki` is missing, it is a symlink to the vault; see the dotfiles README
