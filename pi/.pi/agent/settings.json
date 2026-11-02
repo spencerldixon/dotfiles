@@ -1,7 +1,7 @@
 {
-  "lastChangelogVersion": "1.3.0",
+  "lastChangelogVersion": "1.5.0",
   "theme": "dark",
-  "defaultProvider": "openai-codex",
+  "defaultProvider": "github-copilot",
   "defaultModel": "gpt-6.1-sol",
   "defaultThinkingLevel": "medium",
   "showHardwareCursor": false,
@@ -24,7 +24,8 @@
     "npm:pi-lsp@0.1.7",
     "npm:pi-code-quality@0.1.4",
     "npm:pi-obsidian-vault",
-    "npm:@aliou/pi-guardrails"
+    "npm:@aliou/pi-guardrails",
+    "npm:@getpie/pi-loop"
   ],
   "deviceId": "97cb0cd4-4bee-4982-8399-efd8b215f2c5",
   "enabledModels": [
@@ -37,5 +38,11 @@
     "openai-codex/gpt-6-sol",
     "openai-codex/gpt-6-luna",
     "openai-codex/gpt-6-astra"
-  ]
+  ],
+  "hideThinkingBlock": true,
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.46.0",
+    "{\"source\":\"npm:pi-obsidian-vault\",\"scope\":\"user\"}": "0.2.3",
+    "{\"source\":\"npm:@getpie/pi-loop\",\"scope\":\"user\"}": "0.0.7"
+  }
 }
