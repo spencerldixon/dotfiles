@@ -4,6 +4,11 @@
     "pr": ""
   },
   "includeCoAuthoredBy": false,
+  "permissions": {
+    "deny": [
+      "Edit(CHANGELOG*)"
+    ]
+  },
   "model": "opus",
   "hooks": {
     "SessionStart": [
@@ -93,13 +98,8 @@
   "effortLevel": "xhigh",
   "modelSettings": {
     "claude-opus-5-5": {
-      "effortLevel": "medium"
+      "effortLevel": "high"
     }
   },
-  "autoMemoryEnabled": false,
-  "permissions": {
-    "deny": [
-      "Edit(CHANGELOG*)"
-    ]
-  }
+  "autoMemoryEnabled": false
 }
